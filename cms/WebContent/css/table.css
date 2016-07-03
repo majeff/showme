@@ -1,0 +1,77 @@
+.contenttable table a:link {
+	color: #CC6633;
+}
+
+.contenttable table a:visited {
+	color: #CC6633;
+}
+
+.contenttable table a:hover {
+	color: #999966;
+}
+
+.contenttable table a:active {
+	color: #CC6633;
+}
+
+.contenttable table a:focus {
+	color: #CC6633;
+}
+
+.contenttable table caption {
+	padding: 18px 2px 15px 2px; color: #cfcfcf; background-color: inherit; font-weight: normal; text-align: centered;
+	text-transform: capitalize;
+}
+
+.contenttable table {
+	border: 1px solid #D9D9D9; width: 100%;
+}
+
+.contenttable table tr td {
+	padding: 6px 9px; text-align: left;
+}
+
+.contenttable table thead th {
+	background-color: #E5E5D8; border-bottom: 1px solid #ccc; border-left: 1px solid #D9D9D9; font-weight: bold;
+	text-align: left; padding: 16px 9px; color: #592C16;
+}
+
+.contenttable table tbody tr th {
+	background-color: #fff; font-weight: normal; border-left: none; padding: 6px 9px; background-color: #E5E5D8;
+}
+
+.contenttable table tbody td {
+	border-left: 1px solid #D9D9D9;
+}
+
+.contenttable table tbody tr.odd {
+	background-color: #F3F3F3;
+}
+
+.contenttable table tbody tr:hover {
+	color: #333333; background-color: #E5E5D8;
+}
+
+.contenttable table tbody tr.odd:hover {
+	color: #333333; background-color: #E5E5D8;
+}
+
+.contenttable table tfoot td,.contenttable table tfoot th {
+	border-top: 1px solid #ccc; font-weight: bold; color: #592C16;
+	/*	padding: 16px 9px; */
+}
+
+.querytable table {
+	border: 1px solid #D9D9D9; width: 100%;
+}
+.querytable table th {
+	background-color: #E5E5D8; border-bottom: 1px solid #ccc; border-left: 1px solid #D9D9D9; font-weight: bold;
+	text-align: left; padding: 16px 9px; color: #592C16; width: 15%;
+}
+.querytable table tbody td {
+	border-left: 1px solid #D9D9D9; width: 35%;
+}
+.querytable table tfoot {
+	border-top: 1px solid #ccc; font-weight: bold; color: #592C16;
+	/*	padding: 16px 9px; */
+}

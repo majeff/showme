@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://www.yaodian100.com/static/server/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+	<!-- layout template start -->
+	<definition name="html" template="/WEB-INF/jsp/layout/main.jsp">
+		<put-attribute name="header" value="/WEB-INF/jsp/layout/include/main_header.jsp"/>
+		<put-attribute name="head" value="/WEB-INF/jsp/layout/include/main_head.jsp"/>
+		<put-attribute name="left" value="/WEB-INF/jsp/layout/include/main_left.jsp"/>
+		<put-attribute name="right"/><!-- 
+		<put-attribute name="validatorName"/>
+		<put-attribute name="moduleJS"/> -->
+	</definition>
+	<!-- layout template end -->
+
+	<definition name="login" template="/WEB-INF/jsp/layout/login.jsp"/>
+	<definition name="errors" template="/WEB-INF/jsp/layout/login.jsp"/>
+
+	<definition name="index" extends="html">
+		<put-attribute name="right" value="/WEB-INF/jsp/content/contentListOnly.jsp"/>
+	</definition>
+
+	<definition name="account.user.list" extends="html">
+		<put-attribute name="right" value="/WEB-INF/jsp/account/userList.jsp"/>
+	</definition>
+	<definition name="account.user.view" extends="html">
+		<put-attribute name="right" value="/WEB-INF/jsp/account/userView.jsp"/>
+	</definition>
+	<definition name="account.user.edit" extends="html">
+		<put-attribute name="right" value="/WEB-INF/jsp/account/userEdit.jsp"/>
+		<put-attribute name="validatorName" value="user"/>
+	</definition>
+
+	<definition name="content.content.list" extends="html">
+		<put-attribute name="right" value="/WEB-INF/jsp/content/contentList.jsp"/>
+	</definition>
+	<definition name="content.content.listonly" extends="html">
+		<put-attribute name="right" value="/WEB-INF/jsp/content/contentListOnly.jsp"/>
+	</definition>
+	<definition name="content.content.view" extends="html">
+		<put-attribute name="right" value="/WEB-INF/jsp/content/contentView.jsp"/>
+	</definition>
+	<definition name="content.content.edit" extends="html">
+		<put-attribute name="right" value="/WEB-INF/jsp/content/contentEdit.jsp"/>
+	</definition>
+
+</tiles-definitions>

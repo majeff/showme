@@ -1,0 +1,55 @@
+		<div class="left01">
+			<div class="left01_right"></div>
+			<div class="left01_left"></div>
+			<div class="left01_c">
+				帳號：${adminHelper.user.loginId}</div>
+		</div>
+		<div class="left02">
+			<div class="left02top">
+				<div class="left02top_right"></div>
+				<div class="left02top_left"></div>
+				<div class="left02top_c">用户信息管理</div>
+			</div>
+			<div class="left02down">
+				<div class="left02down01">
+					<a onclick="show_menuB(10)" href="javascript:;"><div id="Bf010" class="left02down01_img"></div>用户信息查询</a>
+				</div>
+				<div class="left02down01_xia noneBox" id="Bli010">
+					<ul>
+						<li id="f010"><a href="#">&middot;精确查询</a></li>
+						<li id="f011"><a href="#">&middot;组合条件查询</a></li>
+					</ul>
+				</div>
+				<div class="left02down01">
+					<a onclick="show_menuB(11)" href="javascript:;">
+						<div id="Bf011" class="left02down01_img"></div> 用户密码管理
+					</a>
+				</div>
+				<div class="left02down01_xia noneBox" id="Bli011">
+					<ul>
+						<li id="f012"><a href="#">&middot;找回密码</a></li>
+						<li id="f013"><a href="#">&middot;更改密码</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="left02">
+			<div class="left02top">
+				<div class="left02top_right"></div>
+				<div class="left02top_left"></div>
+				<div class="left02top_c">系統管理</div>
+			</div>
+			<div class="left02down">
+				<div class="left02down01">
+					<a href='#' onclick="go_func('系統管理','帳號管理','/cms/account/user/list.do')"><div class="left02down01_img"></div>帳號管理</a>
+				</div>
+				<div class="left02down01">
+					<a href="#" onclick="go_func('系統管理','內部公告','/cms/content/content/list/COMP_ANNOUNCE.do')"><div class="left02down01_img"></div>內部公告</a>
+				</div>
+			</div>
+		</div>
+		<div class="left01">
+			<div class="left03_right"></div>
+			<div class="left01_left"></div>
+			<div class="left03_c" onclick="document.location='/cms/j_spring_security_logout'">安全登出</div>
+		</div>

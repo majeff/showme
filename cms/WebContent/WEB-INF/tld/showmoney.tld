@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd" version="2.0">
+
+	<tlib-version>1</tlib-version>
+	<short-name>showmoney</short-name>
+	<uri>http://www.showmoney.com/tags</uri>
+	<!-- ====================================================
+		util textarea viewer
+	====================================================== -->
+	<tag-file>
+		<name>textareaViewer</name>
+		<path>/WEB-INF/tags/common/textareaViewer.tag</path>
+	</tag-file>	
+	<!-- ====================================================
+		page pageutil
+	====================================================== -->
+	<tag-file>
+		<name>pageutil</name>
+		<path>/WEB-INF/tags/common/pageutil.tag</path>
+	</tag-file>
+	<tag-file>
+		<name>pageutilsubmit</name>
+		<path>/WEB-INF/tags/common/pageutilsubmit.tag</path>
+	</tag-file>
+	<!-- ====================================================
+		page pageajaxutil
+	====================================================== -->
+	<tag-file>
+		<name>pageajaxutil</name>
+		<path>/WEB-INF/tags/common/pageajaxutil.tag</path>
+	</tag-file>
+
+	<tag>
+		<name>checkPermission</name>
+		<tag-class>com.showmoney.core.account.web.tag.CheckPermissionTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>permissions</name>
+			<required>true</required>
+			<type>boolean</type>
+		</attribute>
+	</tag>
+</taglib>

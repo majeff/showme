@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE form-validation PUBLIC
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.3.0//EN"
+          "http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
+
+<form-validation>
+	<formset>
+		<form name="user">
+			<field property="loginId" depends="required">
+				<arg position="0" key="msg.account.user.loginId"/>
+			</field>
+			<field property="nameNative" depends="required">
+				<arg position="0" key="msg.account.user.nameNative"/>
+			</field>
+			<field property="credentialsExpireDate" depends="required">
+				<arg position="0" key="msg.account.user.credentialsExpireDate"/>
+				<var><var-name>datePattern</var-name><var-value>yyyy-MM-dd HH:mm</var-value></var>
+			</field>
+			<field property="accountExpireDate" depends="required">
+				<arg position="0" key="msg.account.user.accountExpireDate"/>
+				<var><var-name>datePattern</var-name><var-value>yyyy-MM-dd HH:mm</var-value></var>
+			</field>
+		</form>
+		<form name="content">
+			<field property="title" depends="required"/>
+		</form>
+	</formset>
+</form-validation>
