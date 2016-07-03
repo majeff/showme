@@ -4,7 +4,7 @@
 
    Date Created      : 2009/11/19
    Original Author   : jeff.ma
-   Team              : 
+   Team              :
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    MODIFICATION HISTORY
    ------------------------------------------------------------------------------
@@ -29,7 +29,7 @@ import com.showmoney.core.common.exception.CoreException;
 
 /**
  * @author jeff.ma
- * 
+ *
  */
 @SuppressWarnings("unchecked")
 public class UserDaoImpl extends HibernateObjectDaoImpl<User> implements UserDao {
@@ -40,11 +40,13 @@ public class UserDaoImpl extends HibernateObjectDaoImpl<User> implements UserDao
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see com.showmoney.core.account.dao.UserDao#getByRole(com.showmoney.core.account.entity.Role)
+	 *
+	 * @see com.showmoney.core.account.dao.UserDao#getByRole(com.showmoney.core.
+	 * account.entity.Role)
 	 */
 	public List<User> getByRole(final Role role) throws CoreException {
-		return getHibernateTemplate().find("from User u where ? in elements(u.roles) order by u.username", role);
+		return (List<User>) getHibernateTemplate().find("from User u where ? in elements(u.roles) order by u.username",
+				role);
 	}
 
 	public List<User> getListPageableByRole(final CommonCriteria cri, final String[] sortOrder, final int startNode,
@@ -84,7 +86,7 @@ public class UserDaoImpl extends HibernateObjectDaoImpl<User> implements UserDao
 			List<Object> objs = new ArrayList<Object>();
 			StringBuffer hql = new StringBuffer();
 			hql.append("select count( distinct o) ").append(this.buildHqlByRole(cri, null, objs, roleType, roleKey));
-			List<Number> r = getHibernateTemplate().find(hql.toString(), objs.toArray());
+			List<Number> r = (List<Number>) getHibernateTemplate().find(hql.toString(), objs.toArray());
 			if ((r != null) && (r.size() > 0)) {
 				result = r.get(0);
 			} else {

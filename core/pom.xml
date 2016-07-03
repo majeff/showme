@@ -48,24 +48,14 @@
 		</testResources>
 	</build>
 	<properties>
-		<spring-version>3.1.1.RELEASE</spring-version>
-		<spring-security-version>3.1.0.RELEASE</spring-security-version>
-		<hibernate-version>3.5.6-Final</hibernate-version>
-		<hibernate-annotations-version>3.5.6-Final</hibernate-annotations-version>
+		<spring-version>4.3.0.RELEASE</spring-version>
+		<spring-security-version>4.1.0.RELEASE</spring-security-version>
+		<hibernate-version>5.2.0.Final</hibernate-version>
+		<hibernate-annotations-version>5.0.1.Final</hibernate-annotations-version>
 		<lucene-version>3.6.0</lucene-version>
 		<slf4j-version>1.5.11</slf4j-version><!-- 1.6.4 newer ;1.5.11 for spring -->
 	</properties>
 	<dependencies>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>${hibernate-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-annotations</artifactId>
-			<version>${hibernate-annotations-version}</version>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
@@ -274,6 +264,16 @@
 			<artifactId>cglib</artifactId>
 			<version>2.1</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.common</groupId>
+			<artifactId>hibernate-commons-annotations</artifactId>
+			<version>5.0.1.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.2.0.Final</version>
 		</dependency>
 	</dependencies>
 </project>

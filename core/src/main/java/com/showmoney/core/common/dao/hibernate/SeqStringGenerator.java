@@ -4,7 +4,7 @@
 
    Date Created      : 2008/4/25
    Original Author   : jeffma
-   Team              : 
+   Team              :
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    MODIFICATION HISTORY
    ------------------------------------------------------------------------------
@@ -20,18 +20,17 @@ import java.util.Properties;
 
 import org.hibernate.HibernateException;
 import org.hibernate.MappingException;
-import org.hibernate.dialect.Dialect;
-import org.hibernate.engine.SessionImplementor;
-import org.hibernate.id.SequenceGenerator;
+import org.hibernate.engine.spi.SharedSessionContractImplementor;
+import org.hibernate.id.enhanced.SequenceStyleGenerator;
+import org.hibernate.service.ServiceRegistry;
 import org.hibernate.type.Type;
-import org.hibernate.util.PropertiesHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * @author jeffma
  */
-public class SeqStringGenerator extends SequenceGenerator {
+public class SeqStringGenerator extends SequenceStyleGenerator {
 	/** logger */
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	/** 'pattern' configuration key word */
@@ -48,15 +47,16 @@ public class SeqStringGenerator extends SequenceGenerator {
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see org.hibernate.id.Configurable#configure(org.hibernate.type.Type, java.util.Properties,
-	 * org.hibernate.dialect.Dialect)
+	 *
+	 * @see
+	 * org.hibernate.id.enhanced.SequenceStyleGenerator#configure(org.hibernate.
+	 * type.Type, java.util.Properties, org.hibernate.service.ServiceRegistry)
 	 */
 	@Override
-	public void configure(Type type, Properties params, Dialect dialect) throws MappingException {
-		super.configure(type, params, dialect);
+	public void configure(Type type, Properties params, ServiceRegistry serviceRegistry) throws MappingException {
+		super.configure(type, params, serviceRegistry);
 		try {
-			this.pattern = PropertiesHelper.getString(CONFIG_PATTERN, params, pattern);
+			this.pattern = params.getProperty(CONFIG_PATTERN, pattern);
 			this.formatter = new DecimalFormat(pattern);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -65,14 +65,18 @@ public class SeqStringGenerator extends SequenceGenerator {
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see org.hibernate.id.IdentifierGenerator#generate(org.hibernate.engine.SessionImplementor, java.lang.Object)
+	 *
+	 * @see
+	 * org.hibernate.id.enhanced.SequenceStyleGenerator#generate(org.hibernate.
+	 * engine.spi.SharedSessionContractImplementor, java.lang.Object)
 	 */
 	@Override
-	public Serializable generate(SessionImplementor session, Object obj) throws HibernateException {
-		Serializable result = super.generate(session, obj);
+	public Serializable generate(SharedSessionContractImplementor session, Object object) throws HibernateException {
+		Serializable result = super.generate(session, object);
 		logger.debug("oid:{}", result);
 		result = formatter.format(Long.valueOf(result.toString()));
+
 		return result;
 	}
+
 }

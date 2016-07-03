@@ -4,7 +4,7 @@
 
    Date Created      : 2008/4/25
    Original Author   : jeffma
-   Team              : 
+   Team              :
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    MODIFICATION HISTORY
    ------------------------------------------------------------------------------
@@ -25,18 +25,17 @@ import java.util.Properties;
 import org.apache.commons.lang.math.RandomUtils;
 import org.hibernate.HibernateException;
 import org.hibernate.MappingException;
-import org.hibernate.dialect.Dialect;
-import org.hibernate.engine.SessionImplementor;
-import org.hibernate.id.SequenceGenerator;
+import org.hibernate.engine.spi.SharedSessionContractImplementor;
+import org.hibernate.id.enhanced.SequenceStyleGenerator;
+import org.hibernate.service.ServiceRegistry;
 import org.hibernate.type.Type;
-import org.hibernate.util.PropertiesHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * @author jinwei.lin
  */
-public class OrderIdSeqGenerator extends SequenceGenerator {
+public class OrderIdSeqGenerator extends SequenceStyleGenerator {
 	/** logger */
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	/** 'pattern' configuration key word */
@@ -60,16 +59,17 @@ public class OrderIdSeqGenerator extends SequenceGenerator {
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see org.hibernate.id.Configurable#configure(org.hibernate.type.Type, java.util.Properties,
-	 * org.hibernate.dialect.Dialect)
+	 *
+	 * @see
+	 * org.hibernate.id.enhanced.SequenceStyleGenerator#configure(org.hibernate.
+	 * type.Type, java.util.Properties, org.hibernate.service.ServiceRegistry)
 	 */
 	@Override
-	public void configure(Type type, Properties params, Dialect dialect) throws MappingException {
-		super.configure(type, params, dialect);
+	public void configure(Type type, Properties params, ServiceRegistry serviceRegistry) throws MappingException {
+		super.configure(type, params, serviceRegistry);
 		try {
-			this.pattern = PropertiesHelper.getString(CONFIG_PATTERN, params, pattern);
-			this.datePattern = PropertiesHelper.getString(DATE_PATTERN, params, datePattern);
+			this.pattern = params.getProperty(CONFIG_PATTERN, pattern);
+			this.datePattern = params.getProperty(DATE_PATTERN, datePattern);
 
 			this.formatter = new DecimalFormat(pattern);
 			this.dateformatter = new SimpleDateFormat(datePattern);
@@ -80,17 +80,19 @@ public class OrderIdSeqGenerator extends SequenceGenerator {
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see org.hibernate.id.IdentifierGenerator#generate(org.hibernate.engine.SessionImplementor, java.lang.Object)
+	 *
+	 * @see org.hibernate.id.IdentifierGenerator#generate(org.hibernate.engine.
+	 * SessionImplementor, java.lang.Object)
 	 */
 	@Override
-	public Serializable generate(SessionImplementor session, Object obj) throws HibernateException {
-		Serializable result = super.generate(session, obj);
+	public Serializable generate(SharedSessionContractImplementor session, Object object) throws HibernateException {
+		Serializable result = super.generate(session, object);
 		logger.debug("oid:{}", result);
 		Date now = Calendar.getInstance().getTime();
 		numDate = dateformatter.format(now);
 		String seq = formatter.format(Long.valueOf(result.toString()));
-		result = numDate + seq.substring(0, 3) + String.valueOf(RandomUtils.nextInt(9)) + seq.substring(3, seq.length());
+		result = numDate + seq.substring(0, 3) + String.valueOf(RandomUtils.nextInt(9))
+				+ seq.substring(3, seq.length());
 
 		return result;
 	}

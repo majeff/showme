@@ -4,7 +4,7 @@
 
    Date Created      : 2008/3/14
    Original Author   : jeffma
-   Team              : 
+   Team              :
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    MODIFICATION HISTORY
    ------------------------------------------------------------------------------
@@ -42,7 +42,7 @@ public class HibernateObjectDaoImpl<T> extends HibernateDaoImpl implements Objec
 
 	/**
 	 * default constructors
-	 * 
+	 *
 	 * @throws ClassNotFoundException
 	 */
 	public HibernateObjectDaoImpl(String className) throws ClassNotFoundException {
@@ -53,7 +53,7 @@ public class HibernateObjectDaoImpl<T> extends HibernateDaoImpl implements Objec
 
 	/**
 	 * default constructors
-	 * 
+	 *
 	 * @throws ClassNotFoundException
 	 * @throws ClassNotFoundException
 	 */
@@ -73,7 +73,7 @@ public class HibernateObjectDaoImpl<T> extends HibernateDaoImpl implements Objec
 
 	/**
 	 * @param className
-	 *           the className to set
+	 *            the className to set
 	 * @throws ClassNotFoundException
 	 */
 	public void setClassName(String className) throws ClassNotFoundException {
@@ -83,7 +83,7 @@ public class HibernateObjectDaoImpl<T> extends HibernateDaoImpl implements Objec
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.showmoney.core.dao.ObjectDao#delete(java.lang.Object)
 	 */
 
@@ -98,7 +98,7 @@ public class HibernateObjectDaoImpl<T> extends HibernateDaoImpl implements Objec
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.showmoney.core.dao.ObjectDao#deleteBatch(java.util.Collection)
 	 */
 
@@ -112,9 +112,9 @@ public class HibernateObjectDaoImpl<T> extends HibernateDaoImpl implements Objec
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see com.showmoney.core.dao.ObjectDao#deleteByAttributes(java.util.Map, java.util.Map, java.util.Map,
-	 * java.util.Map)
+	 *
+	 * @see com.showmoney.core.dao.ObjectDao#deleteByAttributes(java.util.Map,
+	 * java.util.Map, java.util.Map, java.util.Map)
 	 */
 
 	public int deleteByAttributes(final CommonCriteria cri) throws CoreException {
@@ -123,7 +123,7 @@ public class HibernateObjectDaoImpl<T> extends HibernateDaoImpl implements Objec
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.showmoney.core.dao.ObjectDao#deleteByPK(java.io.Serializable)
 	 */
 
@@ -139,7 +139,7 @@ public class HibernateObjectDaoImpl<T> extends HibernateDaoImpl implements Objec
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.showmoney.core.dao.ObjectDao#flush()
 	 */
 
@@ -153,7 +153,7 @@ public class HibernateObjectDaoImpl<T> extends HibernateDaoImpl implements Objec
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.showmoney.core.dao.ObjectDao#get(java.io.Serializable)
 	 */
 
@@ -170,9 +170,10 @@ public class HibernateObjectDaoImpl<T> extends HibernateDaoImpl implements Objec
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see com.showmoney.core.dao.ObjectDao#getAttributes(java.lang.String[], java.util.Map, java.util.Map,
-	 * java.util.Map, java.util.Map, java.lang.String[])
+	 *
+	 * @see com.showmoney.core.dao.ObjectDao#getAttributes(java.lang.String[],
+	 * java.util.Map, java.util.Map, java.util.Map, java.util.Map,
+	 * java.lang.String[])
 	 */
 
 	public List getAttributes(final String[] attributeNames, final CommonCriteria cri, final String[] sortOrder)
@@ -182,9 +183,11 @@ public class HibernateObjectDaoImpl<T> extends HibernateDaoImpl implements Objec
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see com.showmoney.core.dao.ObjectDao#getAttributesPageable(java.lang.String[], java.util.Map, java.util.Map,
-	 * java.util.Map, java.util.Map, java.lang.String[], int, int)
+	 *
+	 * @see
+	 * com.showmoney.core.dao.ObjectDao#getAttributesPageable(java.lang.String[]
+	 * , java.util.Map, java.util.Map, java.util.Map, java.util.Map,
+	 * java.lang.String[], int, int)
 	 */
 
 	public List getAttributesPageable(final String[] attributeNames, final CommonCriteria cri, final String[] sortOrder,
@@ -200,9 +203,9 @@ public class HibernateObjectDaoImpl<T> extends HibernateDaoImpl implements Objec
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see com.showmoney.core.dao.ObjectDao#getList(java.util.Map, java.util.Map, java.util.Map, java.util.Map,
-	 * java.lang.String[])
+	 *
+	 * @see com.showmoney.core.dao.ObjectDao#getList(java.util.Map,
+	 * java.util.Map, java.util.Map, java.util.Map, java.lang.String[])
 	 */
 
 	public List<T> getList(final CommonCriteria cri, final String[] sortOrder) throws CoreException {
@@ -211,9 +214,10 @@ public class HibernateObjectDaoImpl<T> extends HibernateDaoImpl implements Objec
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see com.showmoney.core.dao.ObjectDao#getListPageable(java.util.Map, java.util.Map, java.util.Map, java.util.Map,
-	 * java.lang.String[], int, int)
+	 *
+	 * @see com.showmoney.core.dao.ObjectDao#getListPageable(java.util.Map,
+	 * java.util.Map, java.util.Map, java.util.Map, java.lang.String[], int,
+	 * int)
 	 */
 
 	public List<T> getListPageable(final CommonCriteria cri, final String[] sortOrder, final int startNode,
@@ -229,8 +233,9 @@ public class HibernateObjectDaoImpl<T> extends HibernateDaoImpl implements Objec
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see com.showmoney.core.dao.ObjectDao#getListSize(java.util.Map, java.util.Map, java.util.Map, java.util.Map)
+	 *
+	 * @see com.showmoney.core.dao.ObjectDao#getListSize(java.util.Map,
+	 * java.util.Map, java.util.Map, java.util.Map)
 	 */
 
 	public Number getListSize(final CommonCriteria cri) throws CoreException {
@@ -239,9 +244,10 @@ public class HibernateObjectDaoImpl<T> extends HibernateDaoImpl implements Objec
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see com.showmoney.core.dao.ObjectDao#getMap(java.lang.String, java.util.Map, java.util.Map, java.util.Map,
-	 * java.util.Map, java.lang.String[])
+	 *
+	 * @see com.showmoney.core.dao.ObjectDao#getMap(java.lang.String,
+	 * java.util.Map, java.util.Map, java.util.Map, java.util.Map,
+	 * java.lang.String[])
 	 */
 
 	public Map getMap(final String mapKey, final CommonCriteria cri, final String[] sortOrder) throws CoreException {
@@ -250,9 +256,9 @@ public class HibernateObjectDaoImpl<T> extends HibernateDaoImpl implements Objec
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see com.showmoney.core.dao.ObjectDao#getSingle(java.util.Map, java.util.Map, java.util.Map, java.util.Map,
-	 * java.lang.String[])
+	 *
+	 * @see com.showmoney.core.dao.ObjectDao#getSingle(java.util.Map,
+	 * java.util.Map, java.util.Map, java.util.Map, java.lang.String[])
 	 */
 
 	public T getSingle(final CommonCriteria cri, final String[] sortOrder) throws CoreException {
@@ -262,8 +268,9 @@ public class HibernateObjectDaoImpl<T> extends HibernateDaoImpl implements Objec
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see com.showmoney.core.dao.ObjectDao#getSingle(java.lang.String, java.io.Serializable)
+	 *
+	 * @see com.showmoney.core.dao.ObjectDao#getSingle(java.lang.String,
+	 * java.io.Serializable)
 	 */
 
 	public T getSingle(final String key, final Serializable value) throws CoreException {
@@ -274,7 +281,7 @@ public class HibernateObjectDaoImpl<T> extends HibernateDaoImpl implements Objec
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.showmoney.core.dao.ObjectDao#load(java.io.Serializable)
 	 */
 
@@ -290,7 +297,7 @@ public class HibernateObjectDaoImpl<T> extends HibernateDaoImpl implements Objec
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.showmoney.core.dao.ObjectDao#save(java.lang.Object)
 	 */
 
@@ -308,7 +315,7 @@ public class HibernateObjectDaoImpl<T> extends HibernateDaoImpl implements Objec
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.showmoney.core.dao.ObjectDao#saveOrUpdate(java.lang.Object)
 	 */
 
@@ -326,8 +333,9 @@ public class HibernateObjectDaoImpl<T> extends HibernateDaoImpl implements Objec
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see com.showmoney.core.dao.ObjectDao#saveOrUpdateBatch(java.util.Collection)
+	 *
+	 * @see
+	 * com.showmoney.core.dao.ObjectDao#saveOrUpdateBatch(java.util.Collection)
 	 */
 
 	public void saveOrUpdateBatch(final Collection objs) throws CoreException {
@@ -335,9 +343,12 @@ public class HibernateObjectDaoImpl<T> extends HibernateDaoImpl implements Objec
 			for (Object obj : objs) {
 				if (obj instanceof BaseEntity) {
 					updateCommonAttribute((BaseEntity) obj);
+					getHibernateTemplate().saveOrUpdate(obj);
+				} else {
+					getHibernateTemplate().saveOrUpdate(obj);
 				}
 			}
-			getHibernateTemplate().saveOrUpdateAll(objs);
+
 		} catch (HibernateException e) {
 			throw new CoreException(CoreException.ERROR_DB, e);
 		}
@@ -345,7 +356,7 @@ public class HibernateObjectDaoImpl<T> extends HibernateDaoImpl implements Objec
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.showmoney.core.dao.ObjectDao#update(java.lang.Object)
 	 */
 	public T update(final Object obj) throws CoreException {
