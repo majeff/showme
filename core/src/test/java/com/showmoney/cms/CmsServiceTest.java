@@ -42,7 +42,7 @@ public class CmsServiceTest extends SpringCommonTest {
 	 * @throws java.lang.Exception
 	 */
 	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+	public void setUpBeforeClass() throws Exception {
 		configCtx();
 	}
 

@@ -48,7 +48,7 @@ public class SidebarSecurityFilter extends GenericFilterBean implements Initiali
 
 	@Autowired(required = false)
 	private SidebarService sidebarService;
-	/** sidebarLastModify, 紀錄 sidebar entity 中 modifyDate 最晚者 */
+	/** sidebarLastModify, 蝝���� sidebar entity 銝� modifyDate ������ */
 	private Date sidebarLastModify = new Date(100l);;
 	/** permissionMap, cache <url pattern, permissions> */
 	private Map<String, String> permissionMap = new HashMap();
@@ -103,7 +103,7 @@ public class SidebarSecurityFilter extends GenericFilterBean implements Initiali
 						boolean hasPermission = AdminHelper.hasPermissions(user, permissionMap.get(checkUrl));
 
 						if (!hasPermission) {
-							logger.error("无权限, user:" + user.getUsername() + ",url:" + url + ",permission:"
+							logger.error("�����, user:" + user.getUsername() + ",url:" + url + ",permission:"
 									+ permissionMap.get(checkUrl));
 							response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "User " + user.getUsername()
 									+ " not permission");

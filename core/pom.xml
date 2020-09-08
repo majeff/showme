@@ -11,7 +11,7 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
 					<source>1.6</source>
-					<target>1.6</target>
+					<target>1.8</target>
 					<encoding>UTF-8</encoding>
 					<verbose>true</verbose>
 				</configuration>
@@ -48,12 +48,12 @@
 		</testResources>
 	</build>
 	<properties>
-		<spring-version>4.3.0.RELEASE</spring-version>
-		<spring-security-version>4.1.0.RELEASE</spring-security-version>
-		<hibernate-version>5.2.0.Final</hibernate-version>
-		<hibernate-annotations-version>5.0.1.Final</hibernate-annotations-version>
+		<spring-version>5.2.8.RELEASE</spring-version>
+		<spring-security-version>5.3.4.RELEASE</spring-security-version>
+		<hibernate-core-version>5.4.20.Final</hibernate-core-version>
+		<hibernate-annotations-version>5.1.0.Final</hibernate-annotations-version>
 		<lucene-version>3.6.0</lucene-version>
-		<slf4j-version>1.5.11</slf4j-version><!-- 1.6.4 newer ;1.5.11 for spring -->
+		<slf4j-version>1.7.30</slf4j-version><!-- 1.6.4 newer ;1.5.11 for spring -->
 	</properties>
 	<dependencies>
 		<dependency>
@@ -161,8 +161,8 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.10</version>
-			<scope>test</scope>
+			<version>4.13</version>
+			<!-- scope>test</scope -->
 		</dependency>
 		<dependency>
 			<groupId>commons-net</groupId>
@@ -196,20 +196,20 @@
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>jsp-api</artifactId>
-			<version>2.2</version>
+			<artifactId>javax.servlet.jsp-api</artifactId>
+			<version>2.3.3</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet.jsp.jstl</groupId>
 			<artifactId>javax.servlet.jsp.jstl-api</artifactId>
-			<version>1.2.1</version>
+			<version>1.2.2</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -221,9 +221,15 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.20</version>
+			<version>8.0.21</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.4-1201-jdbc41</version>
+			<scope>test</scope>
+        </dependency>
 		<dependency>
 			<groupId>javassist</groupId>
 			<artifactId>javassist</artifactId>
@@ -239,25 +245,25 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
 			<version>${spring-version}</version>
-			<scope>test</scope>
+			<!-- scope>test</scope -->
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>${spring-version}</version>
-			<scope>test</scope>
+			<!-- scope>test</scope -->
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
 			<version>${spring-version}</version>
-			<scope>test</scope>
+			<!-- scope>test</scope -->
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 			<version>${spring-version}</version>
-			<scope>test</scope>
+			<!-- scope>test</scope -->
 		</dependency>
 		<dependency>
 			<groupId>cglib</groupId>
@@ -268,12 +274,12 @@
 		<dependency>
 			<groupId>org.hibernate.common</groupId>
 			<artifactId>hibernate-commons-annotations</artifactId>
-			<version>5.0.1.Final</version>
+			<version>${hibernate-annotations-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>5.2.0.Final</version>
+			<version>${hibernate-core-version}</version>
 		</dependency>
 	</dependencies>
 </project>

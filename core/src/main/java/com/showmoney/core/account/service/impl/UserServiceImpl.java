@@ -29,8 +29,8 @@ import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.RecoverableDataAccessException;
-import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.showmoney.core.account.dao.UserDao;
@@ -177,7 +177,7 @@ public class UserServiceImpl extends DomainServiceImpl<User> implements UserServ
 			throw new CoreException("errors.account.user.status", user.getLoginId());
 		}
 		if (validatePassword(user, oldPassword)) {
-			user.setPassword(passwordEncoder.encodePassword(newPassword, null));
+			user.setPassword(passwordEncoder.encode(newPassword));
 			user.setNeedChangePassword(false);
 			// 直接 update 不用 resetPermission
 			super.save(user);
@@ -197,7 +197,7 @@ public class UserServiceImpl extends DomainServiceImpl<User> implements UserServ
 		if (StringUtils.isBlank(password)) {
 			password = getRandPassword();
 		}
-		user.setPassword(passwordEncoder.encodePassword(password, null));
+		user.setPassword(passwordEncoder.encode(password));
 		user.setNeedChangePassword(true);
 		logger.debug("reset password, user:{}, password:{}", user.getLoginId(), password);
 		// 直接 update 不用 resetPermission
@@ -224,7 +224,7 @@ public class UserServiceImpl extends DomainServiceImpl<User> implements UserServ
 		boolean valid = false;
 		boolean update = false;
 
-		valid = passwordEncoder.isPasswordValid(user.getPassword(), password, null);
+		valid = passwordEncoder.matches(user.getPassword(), password);
 		logger.debug("userId:" + user.getUsername() + ",input:" + password + ",passwd:" + user.getPassword());
 		if (valid && (user.getErrorCount() > 0)) {
 			user.setErrorCount(0);
@@ -444,7 +444,7 @@ public class UserServiceImpl extends DomainServiceImpl<User> implements UserServ
 		if (StringUtils.isBlank(password)) {
 			password = getRandPassword();
 		}
-		entity.setPassword(passwordEncoder.encodePassword(password, null));
+		entity.setPassword(passwordEncoder.encode(password));
 		resetPermissions(entity);
 		entity = super.save(entity);
 

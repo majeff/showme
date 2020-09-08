@@ -4,7 +4,7 @@
 
    Date Created      : 2008/12/24
    Original Author   : jeffma
-   Team              : 
+   Team              :
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    MODIFICATION HISTORY
    ------------------------------------------------------------------------------
@@ -13,25 +13,19 @@
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 package com.showmoney.core.common.utils;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Ignore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.orm.hibernate3.SessionFactoryUtils;
-import org.springframework.orm.hibernate3.SessionHolder;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import com.showmoney.core.account.entity.User;
 
 /**
  * @author jeffma
- * 
+ *
  */
 @Ignore
 public class SpringCommonTest {
@@ -57,26 +51,26 @@ public class SpringCommonTest {
 			}
 			User tester = new User(username);
 			tester.setGroupCode("A-00-000-000");
-			SecurityContextHolder.getContext().setAuthentication(
-					new UsernamePasswordAuthenticationToken(tester, "password"));
+			SecurityContextHolder.getContext()
+					.setAuthentication(new UsernamePasswordAuthenticationToken(tester, "password"));
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
 	}
 
-	@Before
-	public void setUpMethod() throws Exception {
-		if (sessionFactory != null) {
-			Session session = SessionFactoryUtils.getSession(sessionFactory, true);
-			TransactionSynchronizationManager.bindResource(sessionFactory, new SessionHolder(session));
-		}
-	}
-
-	@After
-	public void tearDownMethod() throws Exception {
-		if (sessionFactory != null) {
-			SessionHolder sessionHolder = (SessionHolder) TransactionSynchronizationManager.unbindResource(sessionFactory);
-			SessionFactoryUtils.closeSession(sessionHolder.getSession());
-		}
-	}
+//	@Before
+//	public void setUpMethod() throws Exception {
+//		if (sessionFactory != null) {
+//			Session session = SessionFactoryUtils.getDataSource(sessionFactory);
+//			TransactionSynchronizationManager.bindResource(sessionFactory, new SessionHolder(session));
+//		}
+//	}
+//
+//	@After
+//	public void tearDownMethod() throws Exception {
+//		if (sessionFactory != null) {
+//			SessionHolder sessionHolder = (SessionHolder) TransactionSynchronizationManager.unbindResource(sessionFactory);
+//			SessionFactoryUtils.closeSession(sessionHolder.getSession());
+//		}
+//	}
 }
