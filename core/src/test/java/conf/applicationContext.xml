@@ -8,7 +8,7 @@
 	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
 	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 	">
-	<context:property-placeholder location="conf/showmoney.properties"/>
+	<context:property-placeholder location="conf/macloud.properties"/>
 	<context:annotation-config/>
 	<!-- Cache Start -->
 	<!-- Cache End -->
@@ -59,7 +59,7 @@
 		</property>
 		<property name="packagesToScan">
 			<list>
-				<value>com.showmoney.**.entity</value>
+				<value>cc.macloud.**.entity</value>
 			</list>
 		</property>
 	</bean>
@@ -75,7 +75,7 @@
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="myDataSource"/>
 	</bean>
-	<bean abstract="true" id="daoTemplate" class="com.showmoney.core.common.dao.impl.HibernateObjectDaoImpl">
+	<bean abstract="true" id="daoTemplate" class="cc.macloud.core.common.dao.impl.HibernateObjectDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 	<tx:annotation-driven transaction-manager="transactionManager"/>

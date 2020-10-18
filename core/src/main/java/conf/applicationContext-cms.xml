@@ -10,32 +10,32 @@
 	">
 
 	<!-- content -->
-	<bean id="categoryDao" parent="daoTemplate" class="com.showmoney.core.common.dao.impl.HibernateObjectDaoImpl">
-		<property name="className" value="com.showmoney.cms.content.entity.Category"/>
+	<bean id="categoryDao" parent="daoTemplate" class="cc.macloud.core.common.dao.impl.HibernateObjectDaoImpl">
+		<property name="className" value="cc.macloud.cms.content.entity.Category"/>
 	</bean>
-	<bean id="categoryService" class="com.showmoney.cms.content.service.impl.CategoryServiceImpl">
+	<bean id="categoryService" class="cc.macloud.cms.content.service.impl.CategoryServiceImpl">
 		<property name="dao" ref="categoryDao"/>
 	</bean>
-	<bean id="contentTemplateDao" parent="daoTemplate" class="com.showmoney.core.common.dao.impl.HibernateObjectDaoImpl">
-		<property name="className" value="com.showmoney.cms.content.entity.ContentTemplate"/>
+	<bean id="contentTemplateDao" parent="daoTemplate" class="cc.macloud.core.common.dao.impl.HibernateObjectDaoImpl">
+		<property name="className" value="cc.macloud.cms.content.entity.ContentTemplate"/>
 	</bean>
-	<bean id="contentTemplateService" class="com.showmoney.cms.content.service.impl.ContentTemplateServiceImpl">
+	<bean id="contentTemplateService" class="cc.macloud.cms.content.service.impl.ContentTemplateServiceImpl">
 		<property name="dao" ref="contentTemplateDao"/>
 	</bean>
-	<bean id="contentDao" parent="daoTemplate" class="com.showmoney.core.common.dao.impl.HibernateObjectDaoImpl">
-		<property name="className" value="com.showmoney.cms.content.entity.Content"/>
+	<bean id="contentDao" parent="daoTemplate" class="cc.macloud.core.common.dao.impl.HibernateObjectDaoImpl">
+		<property name="className" value="cc.macloud.cms.content.entity.Content"/>
 	</bean>
-	<bean id="contentService" class="com.showmoney.cms.content.service.impl.ContentServiceImpl">
+	<bean id="contentService" class="cc.macloud.cms.content.service.impl.ContentServiceImpl">
 		<property name="dao" ref="contentDao"/>
 	</bean>
 	<!-- workflow -->
-	<bean id="workflowDao" parent="daoTemplate" class="com.showmoney.core.common.dao.impl.HibernateObjectDaoImpl">
-		<property name="className" value="com.showmoney.cms.workflow.entity.Workflow"/>
+	<bean id="workflowDao" parent="daoTemplate" class="cc.macloud.core.common.dao.impl.HibernateObjectDaoImpl">
+		<property name="className" value="cc.macloud.cms.workflow.entity.Workflow"/>
 	</bean>
-	<bean id="flowNodeDao" parent="daoTemplate" class="com.showmoney.core.common.dao.impl.HibernateObjectDaoImpl">
-		<property name="className" value="com.showmoney.cms.workflow.entity.FlowNode"/>
+	<bean id="flowNodeDao" parent="daoTemplate" class="cc.macloud.core.common.dao.impl.HibernateObjectDaoImpl">
+		<property name="className" value="cc.macloud.cms.workflow.entity.FlowNode"/>
 	</bean>
-	<bean id="workflowService" class="com.showmoney.cms.workflow.service.impl.WorkflowServiceImpl">
+	<bean id="workflowService" class="cc.macloud.cms.workflow.service.impl.WorkflowServiceImpl">
 		<property name="dao" ref="workflowDao"/>
 		<property name="flowNodeDao" ref="flowNodeDao"/>
 	</bean>

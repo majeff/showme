@@ -18,12 +18,12 @@
 		<security:logout logout-url="/j_spring_security_logout"/>
 	</security:http>
 
-	<bean id="authenticationProvider" class="com.showmoney.core.account.web.acegi.UserDetailsAuthenticationProvider"/>
+	<bean id="authenticationProvider" class="cc.macloud.core.account.web.acegi.UserDetailsAuthenticationProvider"/>
 	
 	<security:authentication-manager>
 		<security:authentication-provider ref="authenticationProvider"/>
 	</security:authentication-manager>
 	
-	<bean id="sidebarSecurityFilter" class="com.showmoney.core.account.web.acegi.SidebarSecurityFilter"/>
+	<bean id="sidebarSecurityFilter" class="cc.macloud.core.account.web.acegi.SidebarSecurityFilter"/>
 
 </beans>

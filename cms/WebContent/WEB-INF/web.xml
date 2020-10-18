@@ -39,7 +39,7 @@
 	<!--
 		<servlet>
 		<servlet-name>imageValid</servlet-name>
-		<servlet-class>com.showmoney.mall.member.web.ImageValidServlet</servlet-class>
+		<servlet-class>cc.macloud.mall.member.web.ImageValidServlet</servlet-class>
 		</servlet>
 		<servlet-mapping>
 		<servlet-name>imageValid</servlet-name>
