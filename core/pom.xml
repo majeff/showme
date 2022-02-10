@@ -63,7 +63,7 @@
 	<properties>
 		<spring-version>5.2.8.RELEASE</spring-version>
 		<spring-security-version>5.3.10.RELEASE</spring-security-version>
-		<hibernate-core-version>5.4.20.Final</hibernate-core-version>
+		<hibernate-core-version>5.4.24.Final</hibernate-core-version>
 		<hibernate-annotations-version>5.1.0.Final</hibernate-annotations-version>
 		<lucene-version>3.6.0</lucene-version>
 		<slf4j-version>1.7.30</slf4j-version><!-- 1.6.4 newer ;1.5.11 for spring -->
