@@ -1,6 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>cc.macloud</groupId>
 	<artifactId>core</artifactId>
@@ -66,7 +64,7 @@
 		<hibernate-core-version>5.4.24.Final</hibernate-core-version>
 		<hibernate-annotations-version>5.1.0.Final</hibernate-annotations-version>
 		<lucene-version>3.6.0</lucene-version>
-		<slf4j-version>1.7.30</slf4j-version><!-- 1.6.4 newer ;1.5.11 for spring -->
+		<slf4j-version>1.7.30</slf4j-version> <!-- 1.6.4 newer ;1.5.11 for spring -->
 	</properties>
 	<dependencies>
 		<dependency>
@@ -130,16 +128,16 @@
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>[4.5.13,)</version>
-		</dependency>
+		</dependency> <!--
 		<dependency>
 		    <groupId>org.apache.velocity</groupId>
 		    <artifactId>velocity-engine-core</artifactId>
 		    <version>2.3</version>
-		</dependency><!--
+		</dependency>-->
 		<dependency>
-			<groupId>org.apache.velocity</groupId>
-			<artifactId>velocity-tools</artifactId>
-			<version>2.0</version>
+			<groupId>org.apache.velocity.tools</groupId>
+			<artifactId>velocity-tools-generic</artifactId>
+			<version>3.1</version> <!--
 			<exclusions>
 				<exclusion>
 					<artifactId>struts-core</artifactId>
@@ -153,8 +151,8 @@
 					<artifactId>struts-tiles</artifactId>
 					<groupId>org.apache.struts</groupId>
 				</exclusion>
-			</exclusions>
-		</dependency>-->
+			</exclusions>-->
+		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
@@ -208,6 +206,11 @@
 			<version>1.4.4</version>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.ant</groupId>
+			<artifactId>ant-apache-oro</artifactId>
+			<version>1.10.12</version>
+		</dependency>
+		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>4.0.1</version>
@@ -223,6 +226,12 @@
 			<groupId>javax.servlet.jsp.jstl</groupId>
 			<artifactId>javax.servlet.jsp.jstl-api</artifactId>
 			<version>1.2.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.jws</groupId>
+			<artifactId>javax.jws-api</artifactId>
+			<version>1.1</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>

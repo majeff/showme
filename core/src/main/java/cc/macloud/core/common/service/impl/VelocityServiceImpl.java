@@ -66,12 +66,12 @@ public class VelocityServiceImpl implements TemplateService {
 			if (properties.get(VelocityEngine.INPUT_ENCODING) == null) {
 				properties.put(VelocityEngine.INPUT_ENCODING, "UTF-8");
 			}
-			if (properties.get(VelocityEngine.OUTPUT_ENCODING) == null) {
-				properties.put(VelocityEngine.OUTPUT_ENCODING, "UTF-8");
-			}
-			if (properties.get(VelocityEngine.RUNTIME_LOG_LOGSYSTEM_CLASS) == null) {
-				properties.put(VelocityEngine.RUNTIME_LOG_LOGSYSTEM_CLASS, "org.apache.velocity.runtime.log.NullLogSystem");
-			}
+//			if (properties.get(VelocityEngine.OUTPUT_ENCODING) == null) {
+//				properties.put(VelocityEngine.OUTPUT_ENCODING, "UTF-8");
+//			}
+//			if (properties.get(VelocityEngine.RUNTIME_LOG_LOGSYSTEM_CLASS) == null) {
+//				properties.put(VelocityEngine.RUNTIME_LOG_LOGSYSTEM_CLASS, "org.apache.velocity.runtime.log.NullLogSystem");
+//			}
 			Velocity.init(properties);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -91,12 +91,12 @@ public class VelocityServiceImpl implements TemplateService {
 			if (properties.get(VelocityEngine.INPUT_ENCODING) == null) {
 				properties.put(VelocityEngine.INPUT_ENCODING, "UTF-8");
 			}
-			if (properties.get(VelocityEngine.OUTPUT_ENCODING) == null) {
-				properties.put(VelocityEngine.OUTPUT_ENCODING, "UTF-8");
-			}
-			if (properties.get(VelocityEngine.VM_LIBRARY) == null) {
-				properties.put(VelocityEngine.VM_LIBRARY, "org.apache.velocity.runtime.log.NullLogSystem");
-			}
+//			if (properties.get(VelocityEngine.OUTPUT_ENCODING) == null) {
+//				properties.put(VelocityEngine.OUTPUT_ENCODING, "UTF-8");
+//			}
+//			if (properties.get(VelocityEngine.VM_LIBRARY) == null) {
+//				properties.put(VelocityEngine.VM_LIBRARY, "org.apache.velocity.runtime.log.NullLogSystem");
+//			}
 			Velocity.init(properties);
 		} catch (Exception e) {
 			e.printStackTrace();
