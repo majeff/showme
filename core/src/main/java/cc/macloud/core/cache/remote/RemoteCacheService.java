@@ -4,7 +4,7 @@
 
    Date Created      : 2010/7/30
    Original Author   : jeffma
-   Team              : 
+   Team              :
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    MODIFICATION HISTORY
    ------------------------------------------------------------------------------
@@ -13,13 +13,13 @@
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 package cc.macloud.core.cache.remote;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 import cc.macloud.core.common.exception.CoreException;
 
 /**
  * @author jeffma
- * 
+ *
  */
 @WebService(serviceName = "remoteCacheService")
 public interface RemoteCacheService {

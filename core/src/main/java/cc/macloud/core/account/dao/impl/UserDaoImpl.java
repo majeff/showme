@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
+import org.hibernate.query.Query;
 import org.hibernate.Session;
 
 import cc.macloud.core.account.dao.UserDao;
@@ -63,7 +63,7 @@ public class UserDaoImpl extends HibernateObjectDaoImpl<User> implements UserDao
 			logger.debug("hql:{}, attrs:{}", hql, objs);
 
 			Session s = getHibernateTemplate().getSessionFactory().getCurrentSession();
-			Query q = s.createQuery(hql.toString());
+			Query<User> q = s.createQuery(hql.toString(), User.class); // Replace createQuery(String) with createQuery(String, Class)
 			for (int i = 0; i < objs.size(); i++) {
 				Object obj = objs.get(i);
 				q.setParameter(i, obj);

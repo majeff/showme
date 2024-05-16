@@ -4,7 +4,7 @@
 
    Date Created      : 2011/4/21
    Original Author   : jeffma
-   Team              : 
+   Team              :
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    MODIFICATION HISTORY
    ------------------------------------------------------------------------------
@@ -19,12 +19,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,9 +40,9 @@ import cc.macloud.core.common.utils.StringUtils;
 
 /**
  * @author jeffma
- * 
+ *
  */
-public class SidebarSecurityFilter extends GenericFilterBean implements InitializingBean {
+public class SidebarSecurityFilter extends GenericFilterBean {
 
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -76,11 +76,10 @@ public class SidebarSecurityFilter extends GenericFilterBean implements Initiali
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest, javax.servlet.ServletResponse,
 	 * javax.servlet.FilterChain)
 	 */
-	@Override
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException,
 			ServletException {
 		try {
@@ -116,4 +115,5 @@ public class SidebarSecurityFilter extends GenericFilterBean implements Initiali
 		}
 		chain.doFilter(req, res);
 	}
+
 }

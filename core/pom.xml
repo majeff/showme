@@ -1,4 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>cc.macloud</groupId>
 	<artifactId>core</artifactId>
@@ -8,9 +10,9 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.10.1</version>
+				<version>3.13.0</version>
 				<configuration>
-					<release>11</release>
+					<release>17</release>
 					<encoding>UTF-8</encoding>
 					<verbose>true</verbose>
 				</configuration>
@@ -18,7 +20,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
-				<version>2.1.2</version>
+				<version>3.3.1</version>
 				<executions>
 					<execution>
 						<id>attach-sources</id>
@@ -59,12 +61,12 @@
 		</snapshotRepository>
 	</distributionManagement>
 	<properties>
-		<spring-version>6.0.19</spring-version>
-		<spring-security-version>5.7.12</spring-security-version>
-		<hibernate-core-version>5.4.24.Final</hibernate-core-version>
-		<hibernate-annotations-version>5.1.0.Final</hibernate-annotations-version>
+		<spring-version>6.1.6</spring-version>
+		<spring-security-version>6.1.6</spring-security-version>
+		<hibernate-core-version>6.5.1.Final</hibernate-core-version>
+		<hibernate-annotations-version>6.0.6.Final</hibernate-annotations-version>
 		<lucene-version>3.6.0</lucene-version>
-		<slf4j-version>1.7.30</slf4j-version> <!-- 1.6.4 newer ;1.5.11 for spring -->
+		<slf4j-version>2.0.13</slf4j-version> <!-- 1.6.4 newer ;1.5.11 for spring -->
 	</properties>
 	<dependencies>
 		<dependency>
@@ -155,7 +157,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
+			<artifactId>slf4j-reload4j</artifactId>
 			<version>${slf4j-version}</version>
 		</dependency>
 		<dependency>
@@ -201,9 +203,9 @@
 			<version>1.1.1</version>
 		</dependency>
 		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>1.4.4</version>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>jakarta.mail</artifactId>
+			<version>2.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.ant</groupId>
@@ -211,27 +213,27 @@
 			<version>1.10.12</version>
 		</dependency>
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>4.0.1</version>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<version>6.0.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>javax.servlet.jsp-api</artifactId>
-			<version>2.3.3</version>
+			<groupId>jakarta.servlet.jsp</groupId>
+			<artifactId>jakarta.servlet.jsp-api</artifactId>
+			<version>3.1.1</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>javax.servlet.jsp.jstl</groupId>
-			<artifactId>javax.servlet.jsp.jstl-api</artifactId>
-			<version>1.2.2</version>
+			<groupId>jakarta.servlet.jsp.jstl</groupId>
+			<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+			<version>3.0.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>javax.jws</groupId>
-			<artifactId>javax.jws-api</artifactId>
-			<version>1.1</version>
+			<groupId>jakarta.jws</groupId>
+			<artifactId>jakarta.jws-api</artifactId>
+			<version>3.0.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -311,9 +313,14 @@
 			<version>${hibernate-annotations-version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.hibernate</groupId>
+			<groupId>org.hibernate.orm</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate-core-version}</version>
 		</dependency>
-	</dependencies>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>8.0.1</version>
+		</dependency>
+ </dependencies>
 </project>
