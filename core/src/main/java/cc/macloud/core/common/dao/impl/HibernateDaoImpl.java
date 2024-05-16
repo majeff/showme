@@ -70,10 +70,9 @@ public class HibernateDaoImpl extends HibernateDaoSupport implements CoreDao {
 	protected final CriteriaQuery buildCriteria(Class c, Map equal, Map nonequal, Map moreequal, Map lessequal,
 			Map like, Map in, String[] sortOrder) throws CoreException {
 		Session session = this.currentSession();
-		Criteria result = null;
+		CriteriaQuery result = null;
 		try {
-			CriteriaQuery q = new CriteriaQuery();
-			result = session.createQuery(q);
+			result = session.createQuery("?", c);
 
 			if (MapUtils.isNotEmpty(equal)) {
 				Iterator it = equal.keySet().iterator();
