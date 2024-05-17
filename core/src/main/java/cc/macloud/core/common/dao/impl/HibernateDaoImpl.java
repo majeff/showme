@@ -24,10 +24,15 @@ import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.MapUtils;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
-import org.hibernate.query.Query;
+import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
-import org.hibernate.persister.collection.mutation.RowMutationOperations.Restrictions;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.ProjectionList;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
@@ -39,8 +44,6 @@ import cc.macloud.core.common.entity.BaseEntity;
 import cc.macloud.core.common.entity.UserDetails;
 import cc.macloud.core.common.exception.CoreException;
 import cc.macloud.core.common.utils.StringUtils;
-import jakarta.persistence.criteria.CriteriaQuery;
-import net.sf.ehcache.search.expression.Criteria;
 
 /**
  * @author jeffma
@@ -67,12 +70,12 @@ public class HibernateDaoImpl extends HibernateDaoSupport implements CoreDao {
 	 * @return
 	 * @throws BTException
 	 */
-	protected final CriteriaQuery buildCriteria(Class c, Map equal, Map nonequal, Map moreequal, Map lessequal,
+	protected final Criteria buildCriteria(String className, Map equal, Map nonequal, Map moreequal, Map lessequal,
 			Map like, Map in, String[] sortOrder) throws CoreException {
 		Session session = this.currentSession();
-		CriteriaQuery result = null;
+		Criteria result = null;
 		try {
-			result = session.createQuery("?", c);
+			result = session.createCriteria(className);
 
 			if (MapUtils.isNotEmpty(equal)) {
 				Iterator it = equal.keySet().iterator();
