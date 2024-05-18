@@ -241,7 +241,7 @@ public class BatchEventServiceImpl extends DomainServiceImpl<BatchEvent> impleme
 						try {
 							obj = service.get(jobDetail.getDataKey());
 						} catch (Exception e) {
-							obj = service.get(new Long(jobDetail.getDataKey()));
+							obj = service.get(Long.valueOf(jobDetail.getDataKey()));
 						}
 					} else {
 
