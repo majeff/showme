@@ -22,7 +22,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import cc.macloud.core.account.entity.User;
-import cc.macloud.core.common.utils.StringUtils;
 
 /**
  * @author jeffma

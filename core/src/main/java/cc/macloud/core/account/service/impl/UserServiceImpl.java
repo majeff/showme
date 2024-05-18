@@ -264,7 +264,6 @@ public class UserServiceImpl extends DomainServiceImpl<User> implements UserServ
 	 * @see cc.macloud.core.account.service.UserService#getByRole(java.lang.String,
 	 * cc.macloud.core.account.entity.Role.Type)
 	 */
-	@SuppressWarnings("unchecked")
 	public List<User> getByRole(String roleKey, Role.Type type, String groupCode) throws CoreException {
 		// List<User> result = null;
 		Role role = roleService.get(roleKey, type);
@@ -400,7 +399,6 @@ public class UserServiceImpl extends DomainServiceImpl<User> implements UserServ
 	 * @see cc.macloud.core.account.service.UserService#getByPermission(java.lang.String,
 	 * cc.macloud.core.account.entity.Permission.Type)
 	 */
-	@SuppressWarnings("unchecked")
 	public List<User> getByPermission(String permissionKey, Permission.Type type, String groupCode) {
 		// List<User> result = null;
 		// if (StringUtils.isNotBlank(permissionKey)) {

@@ -15,6 +15,7 @@ package cc.macloud.core.account.service.impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -117,7 +118,7 @@ public class SidebarServiceImpl extends DomainServiceImpl<Sidebar> implements Si
 			objs.put("sidebars", sidebars);
 			userSidebar = templateService.format("account/User.sidebar", objs);
 			try {
-				FileUtils.writeStringToFile(userSidebarFile, userSidebar);
+				FileUtils.writeStringToFile(userSidebarFile, userSidebar, Charset.defaultCharset());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -208,7 +209,7 @@ public class SidebarServiceImpl extends DomainServiceImpl<Sidebar> implements Si
 			result = buildSidebar(user);
 		} else {
 			try {
-				FileUtils.readFileToString(userSidebarFile);
+				FileUtils.readFileToString(userSidebarFile, Charset.defaultCharset());
 			} catch (IOException e) {
 				logger.error("errors.common.sidebar.io", e);
 			}

@@ -1,12 +1,13 @@
 package cc.macloud.core.common.utils;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 將數字轉換為中文字串的工具程式 範例：12345 -> 壹萬貳仟參佰肆拾伍元整 10001002 -> 壹仟萬壹仟零貳元整
- * 
+ *
  * @author lee_solar
  */
 public final class ChineseNumberUtils {
@@ -37,14 +38,14 @@ public final class ChineseNumberUtils {
 	private final static String[] float_wei = new String[] { "元", "零", "角" };// NOPMD
 
 	/**
-	 * 
+	 *
 	 */
 	private ChineseNumberUtils() {
 	}
 
 	/**
 	 * 將 num 轉成中文金額 支援十六位正整數 (0 ~ 9999999999999998)
-	 * 
+	 *
 	 * @param num 要轉換之數字
 	 * @param format 字型判斷條件，ARYBIGNUM = "九十九"; CHIBIGNUM = "玖拾玖"
 	 * @param appendCoin 最後是否附加 "元整" 字樣
@@ -81,7 +82,7 @@ public final class ChineseNumberUtils {
 		List<String> nums = new ArrayList<String>();
 		// 分割小數與整數
 		// String num_str = nFormat.format(num);
-		String num_str = num.setScale(0, BigDecimal.ROUND_DOWN).toString();
+		String num_str = num.setScale(0, RoundingMode.DOWN).toString();
 		String int_str = num_str.substring(0, (num_str.indexOf(".") >= 0 ? num_str.indexOf(".") : num_str.length()));
 		String float_str = "";
 		if (num_str.indexOf(".") >= 0) {
@@ -106,7 +107,7 @@ public final class ChineseNumberUtils {
 
 	/**
 	 * 將 num 轉成中文金額 支援十六位正整數 (0 ~ 9999999999999998)
-	 * 
+	 *
 	 * @param num 要轉換之數字
 	 * @param format 字型判斷條件，ARYBIGNUM = "九十九"; CHIBIGNUM = "玖拾玖"
 	 * @param appendCoin 最後是否附加 "元整" 字樣
@@ -119,7 +120,7 @@ public final class ChineseNumberUtils {
 
 	/**
 	 * 將 num 轉成中文金額 支援十六位正整數 (0 ~ 9999999999999998)
-	 * 
+	 *
 	 * @param num 要轉換之數字
 	 * @param format 字型判斷條件，ARYBIGNUM = "九十九"; CHIBIGNUM = "玖拾玖"
 	 * @param appendCoin 最後是否附加 "元整" 字樣
@@ -132,7 +133,7 @@ public final class ChineseNumberUtils {
 
 	/**
 	 * 將字符ch轉成整型數
-	 * 
+	 *
 	 * @param ch
 	 * @return
 	 */
@@ -142,7 +143,7 @@ public final class ChineseNumberUtils {
 
 	/**
 	 * 轉變整數部份的字符串成中文
-	 * 
+	 *
 	 * @param sb_res 存放中文字符串的結果
 	 * @param nums 存放分割好的字符串的列表
 	 * @param index 解析當前列表的下標
@@ -166,7 +167,7 @@ public final class ChineseNumberUtils {
 
 	/**
 	 * 轉換整數部份的字符串成中文
-	 * 
+	 *
 	 * @param begin 字符串的開始
 	 * @param end 字符串的結束
 	 * @param sb 當前轉換的buffer
@@ -213,7 +214,7 @@ public final class ChineseNumberUtils {
 
 	/**
 	 * 將字符串num每4個一組放入 res 列表中
-	 * 
+	 *
 	 * @param num 將要分割的字符串
 	 * @param res 存放分割好的字符串的列表
 	 */
