@@ -4,7 +4,7 @@
 
    Date Created      : 2012/5/31
    Original Author   : jeffma
-   Team              : 
+   Team              :
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    MODIFICATION HISTORY
    ------------------------------------------------------------------------------
@@ -31,15 +31,15 @@ import cc.macloud.core.account.entity.User;
 import cc.macloud.core.account.service.GroupService;
 import cc.macloud.core.account.service.RoleService;
 import cc.macloud.core.account.service.UserService;
-import cc.macloud.core.common.dao.impl.CommonCriteria;
 import cc.macloud.core.common.entity.SimplePager;
 import cc.macloud.core.common.utils.DateUtils;
 import cc.macloud.core.common.utils.StringUtils;
+import cc.macloud.core.common.utils.dao.CommonCriteria;
 import cc.macloud.core.common.web.AbstractAction;
 
 /**
  * @author jeffma
- * 
+ *
  */
 @Controller
 @RequestMapping("/account/user")

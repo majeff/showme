@@ -40,7 +40,6 @@ import cc.macloud.core.account.entity.Permission.Type;
 import cc.macloud.core.account.utils.AdminHelper;
 import cc.macloud.core.common.batch.AbstractRunJob;
 import cc.macloud.core.common.dao.ObjectDao;
-import cc.macloud.core.common.dao.impl.CommonCriteria;
 import cc.macloud.core.common.entity.Menu;
 import cc.macloud.core.common.exception.CoreException;
 import cc.macloud.core.common.service.DomainService;
@@ -49,6 +48,7 @@ import cc.macloud.core.common.service.ThreadService;
 import cc.macloud.core.common.service.impl.DomainServiceImpl;
 import cc.macloud.core.common.utils.DateUtils;
 import cc.macloud.core.common.utils.convert.TimestampConverter;
+import cc.macloud.core.common.utils.dao.CommonCriteria;
 import cc.macloud.core.event.batch.ExecuteDetailJob;
 import cc.macloud.core.event.batch.UpdateEventJob;
 import cc.macloud.core.event.entity.BatchDetail;
@@ -57,7 +57,7 @@ import cc.macloud.core.event.service.BatchEventService;
 
 /**
  * @author jeffma
- * 
+ *
  */
 public class BatchEventServiceImpl extends DomainServiceImpl<BatchEvent> implements BatchEventService,
 		ApplicationContextAware, InitializingBean {
@@ -82,7 +82,7 @@ public class BatchEventServiceImpl extends DomainServiceImpl<BatchEvent> impleme
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.springframework.context.ApplicationContextAware#setApplicationContext(org.springframework.context.
 	 * ApplicationContext)
 	 */
@@ -110,7 +110,7 @@ public class BatchEventServiceImpl extends DomainServiceImpl<BatchEvent> impleme
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
 	 */
 	@Override
@@ -133,7 +133,7 @@ public class BatchEventServiceImpl extends DomainServiceImpl<BatchEvent> impleme
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.yaodian100.core.common.service.impl.DomainServiceImpl#delete(java.lang.Object)
 	 */
 	@Override
@@ -154,7 +154,7 @@ public class BatchEventServiceImpl extends DomainServiceImpl<BatchEvent> impleme
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.yaodian100.core.common.service.impl.DomainServiceImpl#get(java.io.Serializable)
 	 */
 	@Override
@@ -173,7 +173,7 @@ public class BatchEventServiceImpl extends DomainServiceImpl<BatchEvent> impleme
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.yaodian100.core.common.service.impl.DomainServiceImpl#save(java.lang.Object)
 	 */
 	@Override
@@ -191,7 +191,7 @@ public class BatchEventServiceImpl extends DomainServiceImpl<BatchEvent> impleme
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.yaodian100.ec.batch.service.BatchEventService#executeJob(com.yaodian100.ec.batch.entity.BatchDetail)
 	 */
 	@Override
@@ -317,7 +317,7 @@ public class BatchEventServiceImpl extends DomainServiceImpl<BatchEvent> impleme
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.yaodian100.ec.batch.service.BatchEventService#addBatch(com.yaodian100.ec.batch.entity.BatchEvent)
 	 */
 	@Override
@@ -357,7 +357,7 @@ public class BatchEventServiceImpl extends DomainServiceImpl<BatchEvent> impleme
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.yaodian100.ec.batch.service.BatchEventService#updateBatchEvent(com.yaodian100.ec.batch.entity.BatchEvent)
 	 */
 	@Override
@@ -407,7 +407,7 @@ public class BatchEventServiceImpl extends DomainServiceImpl<BatchEvent> impleme
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.yaodian100.ec.batch.service.BatchEventService#saveOrUpdateDetails(java.util.Collection)
 	 */
 	@Override
@@ -422,7 +422,7 @@ public class BatchEventServiceImpl extends DomainServiceImpl<BatchEvent> impleme
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.yaodian100.ec.batch.service.BatchEventService#deleteDetails(java.util.Collection)
 	 */
 	@Override
@@ -433,7 +433,7 @@ public class BatchEventServiceImpl extends DomainServiceImpl<BatchEvent> impleme
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.yaodian100.ec.batch.service.BatchEventService#getDetails(java.lang.String)
 	 */
 	@Override

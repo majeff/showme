@@ -33,11 +33,11 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import cc.macloud.core.common.dao.impl.CommonCriteria;
 import cc.macloud.core.common.exception.CoreException;
 import cc.macloud.core.common.service.impl.DomainServiceImpl;
 import cc.macloud.core.common.utils.MailUtils;
 import cc.macloud.core.common.utils.StringUtils;
+import cc.macloud.core.common.utils.dao.CommonCriteria;
 import cc.macloud.core.message.entity.Mail;
 import cc.macloud.core.message.service.MailService;
 

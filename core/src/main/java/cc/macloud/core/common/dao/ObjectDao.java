@@ -18,14 +18,48 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import cc.macloud.core.common.dao.impl.CommonCriteria;
 import cc.macloud.core.common.exception.CoreException;
+import cc.macloud.core.common.utils.dao.CommonCriteria;
 
 /**
- * @author jeffma 將操作的 entity 與 dao 綁定
+ * @author jeffma
  */
 @SuppressWarnings("rawtypes")
-public interface ObjectDao<T> extends BasicDao<T> {
+public interface ObjectDao<T> {
+	/**
+	 * Save object
+	 *
+	 * @param obj
+	 * @return object instance
+	 * @throws CoreException
+	 */
+	public T save(T obj) throws CoreException;
+
+	/**
+	 * Update object
+	 *
+	 * @param obj
+	 * @return object instance
+	 * @throws CoreException
+	 */
+	public T update(T obj) throws CoreException;
+
+	/**
+	 * Delete object
+	 *
+	 * @param obj
+	 * @throws CoreException
+	 */
+	public void delete(T obj) throws CoreException;
+
+	/**
+	 * Get object by primary key
+	 *
+	 * @param oid hibernate id
+	 * @return object instance
+	 * @throws CoreException
+	 */
+	public T get(Serializable oid) throws CoreException;
 
     /**
      * Delete a batch of objects.

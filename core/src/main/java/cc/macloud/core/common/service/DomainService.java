@@ -4,7 +4,7 @@
 
    Date Created      : 2008/12/19
    Original Author   : jeffma
-   Team              : 
+   Team              :
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    MODIFICATION HISTORY
    ------------------------------------------------------------------------------
@@ -16,12 +16,12 @@ package cc.macloud.core.common.service;
 import java.io.Serializable;
 import java.util.List;
 
-import cc.macloud.core.common.dao.impl.CommonCriteria;
 import cc.macloud.core.common.exception.CoreException;
+import cc.macloud.core.common.utils.dao.CommonCriteria;
 
 /**
  * @author jeffma
- * 
+ *
  */
 public interface DomainService<T> {
 

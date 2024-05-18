@@ -4,7 +4,7 @@
 
    Date Created      : 2011/4/20
    Original Author   : jeffma
-   Team              : 
+   Team              :
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    MODIFICATION HISTORY
    ------------------------------------------------------------------------------
@@ -29,16 +29,16 @@ import cc.macloud.core.account.entity.Sidebar;
 import cc.macloud.core.account.entity.User;
 import cc.macloud.core.account.service.SidebarService;
 import cc.macloud.core.account.utils.AdminHelper;
-import cc.macloud.core.common.dao.impl.CommonCriteria;
 import cc.macloud.core.common.exception.CoreException;
 import cc.macloud.core.common.service.TemplateService;
 import cc.macloud.core.common.service.impl.DomainServiceImpl;
 import cc.macloud.core.common.utils.DateUtils;
 import cc.macloud.core.common.utils.FileUtils;
+import cc.macloud.core.common.utils.dao.CommonCriteria;
 
 /**
  * @author jeffma
- * 
+ *
  */
 public class SidebarServiceImpl extends DomainServiceImpl<Sidebar> implements SidebarService, InitializingBean {
 
@@ -68,7 +68,7 @@ public class SidebarServiceImpl extends DomainServiceImpl<Sidebar> implements Si
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
 	 */
 	public void afterPropertiesSet() throws Exception {
@@ -84,7 +84,7 @@ public class SidebarServiceImpl extends DomainServiceImpl<Sidebar> implements Si
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.common.service.impl.DomainServiceImpl#save(java.lang.Object)
 	 */
 
@@ -98,7 +98,7 @@ public class SidebarServiceImpl extends DomainServiceImpl<Sidebar> implements Si
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.sidebar.service.SidebarService#buildSidebar(cc.macloud.core.account.entity.User)
 	 */
 
@@ -129,7 +129,7 @@ public class SidebarServiceImpl extends DomainServiceImpl<Sidebar> implements Si
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.account.service.SidebarService#getTop()
 	 */
 
@@ -161,7 +161,7 @@ public class SidebarServiceImpl extends DomainServiceImpl<Sidebar> implements Si
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.account.service.SidebarService#checkLastModify()
 	 */
 
@@ -183,7 +183,7 @@ public class SidebarServiceImpl extends DomainServiceImpl<Sidebar> implements Si
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.account.service.SidebarService#getSidebar(cc.macloud.core.account.entity.User)
 	 */
 	@Override

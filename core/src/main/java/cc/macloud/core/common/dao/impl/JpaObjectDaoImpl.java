@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import cc.macloud.core.common.dao.ObjectDao;
 import cc.macloud.core.common.exception.CoreException;
+import cc.macloud.core.common.utils.dao.CommonCriteria;
 
 /**
  * This class is an implementation of the ObjectDao interface using JPA (Java
@@ -25,20 +26,27 @@ import cc.macloud.core.common.exception.CoreException;
  */
 public class JpaObjectDaoImpl<T> implements ObjectDao<T> {
 
+    /**
+     * The name of the class associated with this object.
+     */
     protected String className;
-	protected Class classObj;
+    /**
+     * The class representing the type of objects managed by this DAO
+     * implementation.
+     */
+    protected Class classObj;
     /**
      * The entity manager used for managing entities in the database.
      */
     protected EntityManager em;
-	/** logger */
-	protected Logger logger = LoggerFactory.getLogger(getClass());
+    /** logger */
+    protected Logger logger = LoggerFactory.getLogger(getClass());
 
     public JpaObjectDaoImpl(String className) throws ClassNotFoundException {
-		super();
-		this.className = className;
-		this.classObj = Class.forName(className);
-	}
+        super();
+        this.className = className;
+        this.classObj = Class.forName(className);
+    }
 
     /**
      * Sets the entity manager for this DAO.
@@ -48,7 +56,6 @@ public class JpaObjectDaoImpl<T> implements ObjectDao<T> {
     public void setEntityManager(EntityManager entityManager) {
         this.em = entityManager;
     }
-
 
     /**
      * Saves an object of type T to the database.
@@ -192,7 +199,7 @@ public class JpaObjectDaoImpl<T> implements ObjectDao<T> {
 
     @Override
     public Number getListSize(CommonCriteria criteria) throws CoreException {
-        Query q = em.createNamedQuery("select count(*) "+criteria.buildHql(className, null, null));
+        Query q = em.createNamedQuery("select count(*) " + criteria.buildHql(className, null, null));
         return (Number) q.getSingleResult();
     }
 
@@ -203,10 +210,11 @@ public class JpaObjectDaoImpl<T> implements ObjectDao<T> {
     }
 
     /**
-     * Retrieves a single object from the database based on the given criteria and sort order.
+     * Retrieves a single object from the database based on the given criteria and
+     * sort order.
      *
-     * @param <T> the type of the object to retrieve
-     * @param criteria the criteria used to filter the objects
+     * @param <T>       the type of the object to retrieve
+     * @param criteria  the criteria used to filter the objects
      * @param sortOrder the sort order to apply when retrieving the objects
      * @return the single object that matches the criteria
      * @throws CoreException if an error occurs while retrieving the object

@@ -24,9 +24,9 @@ import org.springframework.transaction.annotation.Transactional;
 import cc.macloud.core.cache.exception.CacheException;
 import cc.macloud.core.cache.service.CacheService;
 import cc.macloud.core.common.dao.ObjectDao;
-import cc.macloud.core.common.dao.impl.CommonCriteria;
 import cc.macloud.core.common.exception.CoreException;
 import cc.macloud.core.common.service.DomainService;
+import cc.macloud.core.common.utils.dao.CommonCriteria;
 import cc.macloud.core.logger.service.AnnotationLogger;
 
 /**

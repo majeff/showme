@@ -4,7 +4,7 @@
 
    Date Created      : 2012/5/24
    Original Author   : jeffma
-   Team              : 
+   Team              :
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    MODIFICATION HISTORY
    ------------------------------------------------------------------------------
@@ -22,13 +22,13 @@ import cc.macloud.cms.workflow.entity.FlowNode;
 import cc.macloud.cms.workflow.entity.Workflow;
 import cc.macloud.cms.workflow.service.WorkflowService;
 import cc.macloud.core.common.dao.ObjectDao;
-import cc.macloud.core.common.dao.impl.CommonCriteria;
 import cc.macloud.core.common.exception.CoreException;
 import cc.macloud.core.common.service.impl.DomainServiceImpl;
+import cc.macloud.core.common.utils.dao.CommonCriteria;
 
 /**
  * @author jeffma
- * 
+ *
  */
 public class WorkflowServiceImpl extends DomainServiceImpl<Workflow> implements WorkflowService {
 
@@ -44,7 +44,7 @@ public class WorkflowServiceImpl extends DomainServiceImpl<Workflow> implements 
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.cms.workflow.service.WorkflowService#getNode(java.lang.String)
 	 */
 	public FlowNode getNode(String nodeUuid) throws CoreException {
@@ -53,7 +53,7 @@ public class WorkflowServiceImpl extends DomainServiceImpl<Workflow> implements 
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.cms.workflow.service.WorkflowService#saveNode(cc.macloud.cms.workflow.entity.FlowNode)
 	 */
 	@Transactional(readOnly = false)
@@ -66,7 +66,7 @@ public class WorkflowServiceImpl extends DomainServiceImpl<Workflow> implements 
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.common.service.impl.DomainServiceImpl#delete(java.lang.Object)
 	 */
 	@Override
@@ -81,7 +81,7 @@ public class WorkflowServiceImpl extends DomainServiceImpl<Workflow> implements 
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.cms.workflow.service.WorkflowService#getNodes(java.lang.String)
 	 */
 	@Override

@@ -19,8 +19,8 @@ import cc.macloud.core.account.entity.Permission;
 import cc.macloud.core.account.entity.Role;
 import cc.macloud.core.account.entity.User;
 import cc.macloud.core.common.dao.ObjectDao;
-import cc.macloud.core.common.dao.impl.CommonCriteria;
 import cc.macloud.core.common.exception.CoreException;
+import cc.macloud.core.common.utils.dao.CommonCriteria;
 
 /**
  * @author jeff.ma

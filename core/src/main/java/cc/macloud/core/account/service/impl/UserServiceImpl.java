@@ -44,13 +44,13 @@ import cc.macloud.core.account.service.PermissionService;
 import cc.macloud.core.account.service.RoleService;
 import cc.macloud.core.account.service.UserService;
 import cc.macloud.core.common.dao.ObjectDao;
-import cc.macloud.core.common.dao.impl.CommonCriteria;
 import cc.macloud.core.common.entity.UserDetails;
 import cc.macloud.core.common.exception.CoreException;
 import cc.macloud.core.common.service.TemplateService;
 import cc.macloud.core.common.service.impl.DomainServiceImpl;
 import cc.macloud.core.common.utils.DateUtils;
 import cc.macloud.core.common.utils.StringUtils;
+import cc.macloud.core.common.utils.dao.CommonCriteria;
 import cc.macloud.core.message.entity.Mail;
 import cc.macloud.core.message.service.MailService;
 

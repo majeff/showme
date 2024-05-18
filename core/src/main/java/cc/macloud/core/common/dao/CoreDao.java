@@ -18,8 +18,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import cc.macloud.core.common.dao.impl.CommonCriteria;
 import cc.macloud.core.common.exception.CoreException;
+import cc.macloud.core.common.utils.dao.CommonCriteria;
 
 /**
  * @author jeffma 由 Service Bane 自行決定操作的 entity
