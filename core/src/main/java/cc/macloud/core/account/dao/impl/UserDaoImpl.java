@@ -16,15 +16,14 @@ package cc.macloud.core.account.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.HibernateException;
-import org.hibernate.query.Query;
-import org.hibernate.Session;
+import javax.persistence.Query;
 
 import cc.macloud.core.account.dao.UserDao;
+import cc.macloud.core.account.entity.Permission;
 import cc.macloud.core.account.entity.Role;
 import cc.macloud.core.account.entity.User;
 import cc.macloud.core.common.dao.impl.CommonCriteria;
-import cc.macloud.core.common.dao.impl.HibernateObjectDaoImpl;
+import cc.macloud.core.common.dao.impl.JpaObjectDaoImpl;
 import cc.macloud.core.common.exception.CoreException;
 
 /**
@@ -32,7 +31,7 @@ import cc.macloud.core.common.exception.CoreException;
  *
  */
 @SuppressWarnings("unchecked")
-public class UserDaoImpl extends HibernateObjectDaoImpl<User> implements UserDao {
+public class UserDaoImpl extends JpaObjectDaoImpl<User> implements UserDao {
 
 	public UserDaoImpl() throws ClassNotFoundException {
 		super(User.class.getName());
@@ -45,8 +44,7 @@ public class UserDaoImpl extends HibernateObjectDaoImpl<User> implements UserDao
 	 * account.entity.Role)
 	 */
 	public List<User> getByRole(final Role role) throws CoreException {
-		return (List<User>) getHibernateTemplate().find("from User u where ? in elements(u.roles) order by u.username",
-				role);
+		return (List<User>) em.createNamedQuery("from User u where ? in elements(u.roles) order by u.username").setParameter(0, role).getResultList();
 	}
 
 	public List<User> getListPageableByRole(final CommonCriteria cri, final String[] sortOrder, final int startNode,
@@ -62,8 +60,7 @@ public class UserDaoImpl extends HibernateObjectDaoImpl<User> implements UserDao
 			hql.append("select distinct o ").append(this.buildHqlByRole(cri, null, objs, roleType, roleKey));
 			logger.debug("hql:{}, attrs:{}", hql, objs);
 
-			Session s = getHibernateTemplate().getSessionFactory().getCurrentSession();
-			Query<User> q = s.createQuery(hql.toString(), User.class); // Replace createQuery(String) with createQuery(String, Class)
+			Query q = em.createQuery(hql.toString()); // Replace createQuery(String) with createQuery(String, Class)
 			for (int i = 0; i < objs.size(); i++) {
 				Object obj = objs.get(i);
 				q.setParameter(i, obj);
@@ -72,8 +69,8 @@ public class UserDaoImpl extends HibernateObjectDaoImpl<User> implements UserDao
 			if (returnSize > 0) {
 				q.setMaxResults(returnSize);
 			}
-			result = q.list();
-		} catch (HibernateException e) {
+			result = q.getResultList();
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new CoreException(CoreException.ERROR_DB, e);
 		}
@@ -86,14 +83,14 @@ public class UserDaoImpl extends HibernateObjectDaoImpl<User> implements UserDao
 			List<Object> objs = new ArrayList<Object>();
 			StringBuffer hql = new StringBuffer();
 			hql.append("select count( distinct o) ").append(this.buildHqlByRole(cri, null, objs, roleType, roleKey));
-			List<Number> r = (List<Number>) getHibernateTemplate().find(hql.toString(), objs.toArray());
+			List<Number> r = (List<Number>) em.createNamedQuery(hql.toString()).getResultList();
 			if ((r != null) && (r.size() > 0)) {
 				result = r.get(0);
 			} else {
 				result = Integer.valueOf(0);
 			}
 
-		} catch (HibernateException e) {
+		} catch (Exception e) {
 			throw new CoreException(CoreException.ERROR_DB, e);
 		}
 		return result;
@@ -101,7 +98,7 @@ public class UserDaoImpl extends HibernateObjectDaoImpl<User> implements UserDao
 
 	private String buildHqlByRole(CommonCriteria cri, String[] sortOrder, List<Object> objs, Role.Type roleType,
 			String roleKey) {
-		StringBuffer hql = new StringBuffer(super.buildHql(User.class.getName(), cri, sortOrder, objs));
+		StringBuffer hql = new StringBuffer(cri.buildHql(User.class.getName(), sortOrder, objs));
 		int index1 = hql.indexOf("User o");
 		hql.insert(index1 + 6, ",Role r");
 		int index2 = hql.indexOf("where", index1);
@@ -131,5 +128,11 @@ public class UserDaoImpl extends HibernateObjectDaoImpl<User> implements UserDao
 
 		return hql.toString();
 
+	}
+
+	@Override
+	public List<User> getByPermission(Permission p) throws CoreException {
+		return (List<User>) em.createQuery("select u from User u join u.roles r join r.permissions p where p = :p", User.class)
+				.setParameter("p", p).getResultList();
 	}
 }

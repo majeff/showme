@@ -4,7 +4,7 @@
 
    Date Created      : 2009/10/8
    Original Author   : jeffma
-   Team              : 
+   Team              :
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    MODIFICATION HISTORY
    ------------------------------------------------------------------------------
@@ -16,11 +16,16 @@ package cc.macloud.core.common.dao.impl;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+
+import cc.macloud.core.common.exception.CoreException;
+import cc.macloud.core.common.utils.StringUtils;
 
 /**
  * @author jeffma
- * 
+ *
  */
 public class CommonCriteria implements Serializable {
 
@@ -54,6 +59,157 @@ public class CommonCriteria implements Serializable {
 		this.le = le;
 		this.rlike = rlike;
 		this.in = in;
+	}
+
+	public final String buildHql(String className, String[] sortOrder, List objs)
+			throws CoreException {
+		StringBuffer hql = new StringBuffer();
+
+		if ((getEq() != null) && (getEq().size() > 0)) {
+			Iterator it = getEq().keySet().iterator();
+			while (it.hasNext()) {
+				String key = (String) it.next();
+				Object value = getEq().get(key);
+				if (hql.length() > 0) {
+					hql.append(" and");
+				}
+				if (value != null) {
+					hql.append(" o." + key + "=?");
+					objs.add(value);
+				} else {
+					hql.append(" o." + key + " is null");
+				}
+			}
+		}
+		if ((getNe() != null) && (getNe().size() > 0)) {
+			Iterator it = getNe().keySet().iterator();
+			while (it.hasNext()) {
+				String key = (String) it.next();
+				Object value = getNe().get(key);
+				if (hql.length() > 0) {
+					hql.append(" and");
+				}
+				if (value != null) {
+					hql.append(" o." + key + "!=?");
+					objs.add(value);
+				} else {
+					hql.append(" o." + key + " is not null");
+				}
+			}
+		}
+		if ((getGe() != null) && (getGe().size() > 0)) {
+			Iterator it = getGe().keySet().iterator();
+			while (it.hasNext()) {
+				String key = (String) it.next();
+				Object value = getGe().get(key);
+				if (value != null) {
+					if (hql.length() > 0) {
+						hql.append(" and");
+					}
+					hql.append(" o." + key + ">=?");
+					objs.add(value);
+				}
+			}
+		}
+		if ((getLe() != null) && (getLe().size() > 0)) {
+			Iterator it = getLe().keySet().iterator();
+			while (it.hasNext()) {
+				String key = (String) it.next();
+				Object value = getLe().get(key);
+				if (value != null) {
+					if (hql.length() > 0) {
+						hql.append(" and");
+					}
+					hql.append(" o." + key + "<=?");
+					objs.add(value);
+				}
+			}
+		}
+		if ((getRlike() != null) && (getRlike().size() > 0)) {
+			Iterator it = getRlike().keySet().iterator();
+			while (it.hasNext()) {
+				String key = (String) it.next();
+				Object value = getRlike().get(key);
+				if (value != null) {
+					if (hql.length() > 0) {
+						hql.append(" and");
+					}
+					hql.append(" o." + key + " like ?");
+					objs.add(value + "%");
+				}
+			}
+		}
+		if (this instanceof CriteriaInRlike) {
+			CriteriaInRlike criInlike = (CriteriaInRlike) this;
+			if ((criInlike.getInRlike() != null) && (criInlike.getInRlike().size() > 0)) {
+				StringBuffer subHql = new StringBuffer();
+				Iterator it = criInlike.getInRlike().keySet().iterator();
+				while (it.hasNext()) {
+					String key = (String) it.next();
+					Collection value = criInlike.getInRlike().get(key);
+					for (Object o : value) {
+						if (subHql.length() > 0) {
+							subHql.append(" or");
+						}
+						subHql.append(" o." + key + " like ?");
+						objs.add(o + "%");
+					}
+				}
+				if ((hql.length() > 0) && (subHql.length() > 0)) {
+					hql.append(" and");
+				}
+				if (subHql.length() > 0) {
+					hql.append(" (").append(subHql).append(" )");
+				}
+			}
+		}
+		if ((getIn() != null) && (getIn().size() > 0)) {
+			Iterator it = getIn().keySet().iterator();
+			while (it.hasNext()) {
+				String key = (String) it.next();
+				Collection value = getIn().get(key);
+				if (value != null) {
+					if (hql.length() > 0) {
+						hql.append(" and");
+					}
+					hql.append(" o." + key + " in (");
+					for (int i = 0; i < value.size(); i++) {
+						hql.append(i == 0 ? "?" : ", ?");
+						objs.add(value.toArray()[i]);
+					}
+					hql.append(")");
+				}
+			}
+		}
+		if (hql.length() > 0) {
+			hql.insert(0, "from " + className + " o where");
+		} else {
+			hql.append("from " + className + " o");
+		}
+		if ((sortOrder != null) && (sortOrder.length > 0)) {
+			hql.append(" order by");
+			for (int i = 0; i < sortOrder.length; i++) {
+				String key = sortOrder[i];
+				String[] o = StringUtils.split(key, " ");
+				if (i != 0) {
+					hql.append(" ,");
+				} else {
+					hql.append(" ");
+				}
+				if (o.length == 1) {
+					hql.append("o." + key + " desc");
+				} else if ((o.length > 1) && "desc".equalsIgnoreCase(o[1])) {
+					hql.append("o." + o[0] + " desc");
+
+				} else if ((o.length > 1) && "asc".equalsIgnoreCase(o[1])) {
+					hql.append("o." + o[0] + " asc");
+				} else {
+					throw new CoreException(CoreException.ERROR_DB, "unknow order type", o[1]);
+				}
+			}
+		}
+
+		return hql.toString();
 	}
 
 	/**
@@ -214,7 +370,7 @@ public class CommonCriteria implements Serializable {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

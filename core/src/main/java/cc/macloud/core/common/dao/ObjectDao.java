@@ -138,43 +138,6 @@ public interface ObjectDao<T> extends BasicDao<T> {
     public Map<String, T> getMap(String mapKey, CommonCriteria criteria, String[] sortOrder) throws CoreException;
 
     /**
-     * Retrieves a list of objects based on the given named query and attributes.
-     *
-     * @param queryName the name of the named query to execute
-     * @param attrs the attributes to be used in the query
-     * @param firstResult the index of the first result to retrieve
-     * @param maxResults the maximum number of results to retrieve
-     * @return a list of objects that match the named query and attributes
-     * @throws CoreException if an error occurs during object retrieval
-     */
-    public List<T> getNameQuery(String queryName, Map<String, Serializable> attrs, int firstResult, int maxResults)
-	    throws CoreException;
-
-    /**
-     * Retrieves a list of objects based on the given query string and list of attributes.
-     *
-     * @param queryString the query string to execute
-     * @param attrs the attributes to be used in the query
-     * @param firstResult the index of the first result to retrieve
-     * @param maxResults the maximum number of results to retrieve
-     * @return a list of objects that match the query string and attributes
-     * @throws CoreException if an error occurs during object retrieval
-     */
-    public List<T> getQueryByList(String queryString, List attrs, int firstResult, int maxResults) throws CoreException;
-
-    /**
-     * Retrieves a list of objects based on the given query string and map of attributes.
-     *
-     * @param queryString the query string to execute
-     * @param attrs the attributes to be used in the query
-     * @param firstResult the index of the first result to retrieve
-     * @param maxResults the maximum number of results to retrieve
-     * @return a list of objects that match the query string and attributes
-     * @throws CoreException if an error occurs during object retrieval
-     */
-    public List<T> getQueryByMap(String queryString, Map attrs, int firstResult, int maxResults) throws CoreException;
-
-    /**
      * Retrieves a single object based on the given criteria.
      *
      * @param criteria the criteria for object retrieval

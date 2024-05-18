@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import cc.macloud.core.common.dao.ObjectDao;
 import cc.macloud.core.common.exception.CoreException;
@@ -21,14 +25,20 @@ import cc.macloud.core.common.exception.CoreException;
  */
 public class JpaObjectDaoImpl<T> implements ObjectDao<T> {
 
-    /**
-     * The name of the persistence unit.
-     */
-    private String persistenceUnitName;
+    protected String className;
+	protected Class classObj;
     /**
      * The entity manager used for managing entities in the database.
      */
-    private EntityManager em;
+    protected EntityManager em;
+	/** logger */
+	protected Logger logger = LoggerFactory.getLogger(getClass());
+
+    public JpaObjectDaoImpl(String className) throws ClassNotFoundException {
+		super();
+		this.className = className;
+		this.classObj = Class.forName(className);
+	}
 
     /**
      * Sets the entity manager for this DAO.
@@ -39,14 +49,6 @@ public class JpaObjectDaoImpl<T> implements ObjectDao<T> {
         this.em = entityManager;
     }
 
-    /**
-     * Sets the name of the persistence unit.
-     *
-     * @param persistenceUnitName the name of the persistence unit
-     */
-    public void setPersistenceUnitName(String persistenceUnitName) {
-        this.persistenceUnitName = persistenceUnitName;
-    }
 
     /**
      * Saves an object of type T to the database.
@@ -96,11 +98,7 @@ public class JpaObjectDaoImpl<T> implements ObjectDao<T> {
      */
     @Override
     public T get(Serializable oid) throws CoreException {
-        try {
-            return (T) em.find(Class.forName(persistenceUnitName), oid);
-        } catch (ClassNotFoundException e) {
-            throw new CoreException(e.getMessage());
-        }
+        return (T) em.find(classObj, oid);
     }
 
     /**
@@ -171,27 +169,31 @@ public class JpaObjectDaoImpl<T> implements ObjectDao<T> {
     @Override
     public List<T> getAttributesPageable(String[] attributeNames, CommonCriteria criteria, String[] sortOrder,
             int startNode, int returnSize) throws CoreException {
-        // TODO Auto-generated method stub
+        Query q = em.createNamedQuery(criteria.buildHql(className, sortOrder, null));
+        q.setFirstResult(startNode);
+        q.setMaxResults(returnSize);
         throw new UnsupportedOperationException("Unimplemented method 'getAttributesPageable'");
     }
 
     @Override
     public List<T> getList(CommonCriteria criteria, String[] sortOrder) throws CoreException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getList'");
+        Query q = em.createNamedQuery(criteria.buildHql(className, sortOrder, null));
+        return q.getResultList();
     }
 
     @Override
     public List<T> getListPageable(CommonCriteria criteria, String[] sortOrder, int startNode, int returnSize)
             throws CoreException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getListPageable'");
+        Query q = em.createNamedQuery(criteria.buildHql(className, sortOrder, null));
+        q.setFirstResult(startNode);
+        q.setMaxResults(returnSize);
+        return q.getResultList();
     }
 
     @Override
     public Number getListSize(CommonCriteria criteria) throws CoreException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getListSize'");
+        Query q = em.createNamedQuery("select count(*) "+criteria.buildHql(className, null, null));
+        return (Number) q.getSingleResult();
     }
 
     @Override
@@ -200,29 +202,18 @@ public class JpaObjectDaoImpl<T> implements ObjectDao<T> {
         throw new UnsupportedOperationException("Unimplemented method 'getMap'");
     }
 
-    @Override
-    public List getNameQuery(String queryName, Map<String, Serializable> attrs, int firstResult, int maxResults)
-            throws CoreException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getNameQuery'");
-    }
-
-    @Override
-    public List getQueryByList(String queryString, List attrs, int firstResult, int maxResults) throws CoreException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getQueryByList'");
-    }
-
-    @Override
-    public List getQueryByMap(String queryString, Map attrs, int firstResult, int maxResults) throws CoreException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getQueryByMap'");
-    }
-
+    /**
+     * Retrieves a single object from the database based on the given criteria and sort order.
+     *
+     * @param <T> the type of the object to retrieve
+     * @param criteria the criteria used to filter the objects
+     * @param sortOrder the sort order to apply when retrieving the objects
+     * @return the single object that matches the criteria
+     * @throws CoreException if an error occurs while retrieving the object
+     */
     @Override
     public T getSingle(CommonCriteria criteria, String[] sortOrder) throws CoreException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSingle'");
+        return (T) em.createQuery(criteria.buildHql(className, sortOrder, null)).getSingleResult();
     }
 
     /**
@@ -237,7 +228,7 @@ public class JpaObjectDaoImpl<T> implements ObjectDao<T> {
      */
     @Override
     public T getSingle(String key, Serializable value) throws CoreException {
-        return (T) em.createQuery("from " + persistenceUnitName + " where " + key + " = :key")
+        return (T) em.createQuery("from " + className + " where " + key + " = :key")
                 .setParameter("key", value).getSingleResult();
     }
 

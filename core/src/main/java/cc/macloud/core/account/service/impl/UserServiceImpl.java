@@ -2,10 +2,10 @@
  * ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  * Module Name : cc.macloud.core.account.service.impl.UserServiceImpl
  * Module Description :
- * 
+ *
  * Date Created : 2008/4/24
  * Original Author : jeffma
- * Team : 
+ * Team :
  * ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  * MODIFICATION HISTORY
  * ------------------------------------------------------------------------------
@@ -40,6 +40,7 @@ import cc.macloud.core.account.entity.Role;
 import cc.macloud.core.account.entity.User;
 import cc.macloud.core.account.entity.UserPermission;
 import cc.macloud.core.account.service.GroupService;
+import cc.macloud.core.account.service.PermissionService;
 import cc.macloud.core.account.service.RoleService;
 import cc.macloud.core.account.service.UserService;
 import cc.macloud.core.common.dao.ObjectDao;
@@ -75,6 +76,8 @@ public class UserServiceImpl extends DomainServiceImpl<User> implements UserServ
 	/** roleService */
 	@Autowired
 	private RoleService roleService;
+	@Autowired
+	private PermissionService permissionService;
 	private UserDao dao;
 
 	private String charSet = "23456789abcdefghijkmnpqrstuvwxyzABCDEFGHIJKMNPQRSTUVWXYZ";
@@ -189,7 +192,7 @@ public class UserServiceImpl extends DomainServiceImpl<User> implements UserServ
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.account.service.UserService#resetPassword(cc.macloud.core.account.entity.User, boolean)
 	 */
 	@Transactional(readOnly = false)
@@ -215,7 +218,7 @@ public class UserServiceImpl extends DomainServiceImpl<User> implements UserServ
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.account.service.UserService#validatePassword(cc.macloud.core.account.entity.User,
 	 * java.lang.String)
 	 */
@@ -245,7 +248,7 @@ public class UserServiceImpl extends DomainServiceImpl<User> implements UserServ
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.account.service.UserService#getByGroup(java.lang.String)
 	 */
 	public List<User> getByGroup(String groupKey) throws CoreException {
@@ -257,33 +260,34 @@ public class UserServiceImpl extends DomainServiceImpl<User> implements UserServ
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.account.service.UserService#getByRole(java.lang.String,
 	 * cc.macloud.core.account.entity.Role.Type)
 	 */
 	@SuppressWarnings("unchecked")
 	public List<User> getByRole(String roleKey, Role.Type type, String groupCode) throws CoreException {
-		List<User> result = null;
+		// List<User> result = null;
 		Role role = roleService.get(roleKey, type);
-		if (role != null) {
-			List<Object> attrs = new ArrayList<Object>();
-			String hql = "from User u where ? in elements(u.roles) and u.accountNonLocked=? and u.accountExpireDate<?";
-			attrs.add(role);
-			attrs.add(Boolean.TRUE);
-			attrs.add(DateUtils.getCurrentTime());
-			if (StringUtils.isNotBlank(groupCode)) {
-				hql += " and u.groupName=?";
-				attrs.add(groupCode);
-			}
+		// if (role != null) {
+		// 	List<Object> attrs = new ArrayList<Object>();
+		// 	String hql = "from User u where ? in elements(u.roles) and u.accountNonLocked=? and u.accountExpireDate<?";
+		// 	attrs.add(role);
+		// 	attrs.add(Boolean.TRUE);
+		// 	attrs.add(DateUtils.getCurrentTime());
+		// 	if (StringUtils.isNotBlank(groupCode)) {
+		// 		hql += " and u.groupName=?";
+		// 		attrs.add(groupCode);
+		// 	}
 
-			result = getDao().getQueryByList(hql + " order by u.loginId", attrs, 0, -1);
-		}
-		return result;
+		// 	result = dao.getQueryByList(hql + " order by u.loginId", attrs, 0, -1);
+		// }
+
+		return dao.getByRole(role);
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.common.service.impl.DomainServiceImpl#save(java.lang.Object)
 	 */
 	@Override
@@ -340,7 +344,7 @@ public class UserServiceImpl extends DomainServiceImpl<User> implements UserServ
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.common.service.impl.DomainServiceImpl#get(java.io.Serializable)
 	 */
 	@Override
@@ -360,7 +364,7 @@ public class UserServiceImpl extends DomainServiceImpl<User> implements UserServ
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.springframework.security.userdetails.UserDetailsService#loadUserByUsername(java.lang.String)
 	 */
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, DataAccessException {
@@ -392,34 +396,36 @@ public class UserServiceImpl extends DomainServiceImpl<User> implements UserServ
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.account.service.UserService#getByPermission(java.lang.String,
 	 * cc.macloud.core.account.entity.Permission.Type)
 	 */
 	@SuppressWarnings("unchecked")
 	public List<User> getByPermission(String permissionKey, Permission.Type type, String groupCode) {
-		List<User> result = null;
-		if (StringUtils.isNotBlank(permissionKey)) {
-			List<String> param = new ArrayList<String>();
-			StringBuffer hql = new StringBuffer()
-					.append("from User u where u.permissions[?] is not null and u.accountNonLocked=?");
-			param.add(type.name() + "_" + permissionKey);
-			param.add("Y");
-			if (StringUtils.isNotBlank(groupCode)) {
-				param.add(groupCode);
-				hql.append(" and u.groupName = ?");
-			}
-			if (StringUtils.isNotBlank(companyCode)) {
-				hql.append(" and u.groupName like '" + companyCode + "%'");
-			}
-			result = getDao().getQueryByList(hql.toString(), param, 0, -1);
-		}
-		return result;
+		// List<User> result = null;
+		// if (StringUtils.isNotBlank(permissionKey)) {
+		// 	List<String> param = new ArrayList<String>();
+		// 	StringBuffer hql = new StringBuffer()
+		// 			.append("from User u where u.permissions[?] is not null and u.accountNonLocked=?");
+		// 	param.add(type.name() + "_" + permissionKey);
+		// 	param.add("Y");
+		// 	if (StringUtils.isNotBlank(groupCode)) {
+		// 		param.add(groupCode);
+		// 		hql.append(" and u.groupName = ?");
+		// 	}
+		// 	if (StringUtils.isNotBlank(companyCode)) {
+		// 		hql.append(" and u.groupName like '" + companyCode + "%'");
+		// 	}
+		// 	result = getDao().getQueryByList(hql.toString(), param, 0, -1);
+		// }
+		// return result;
+		Permission p = permissionService.get(permissionKey, type);
+		return dao.getByPermission(p);
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.account.service.UserService#createUser(cc.macloud.core.account.entity.User,
 	 * java.lang.String, java.lang.String, boolean)
 	 */
@@ -462,7 +468,7 @@ public class UserServiceImpl extends DomainServiceImpl<User> implements UserServ
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.common.service.impl.DomainServiceImpl#getList(int, int,
 	 * cc.macloud.core.common.dao.impl.CommonCriteria, java.lang.String[])
 	 */
@@ -499,7 +505,7 @@ public class UserServiceImpl extends DomainServiceImpl<User> implements UserServ
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.common.service.impl.DomainServiceImpl#getListSize(cc.macloud.core.common.dao.impl.
 	 * CommonCriteria)
 	 */
@@ -511,7 +517,7 @@ public class UserServiceImpl extends DomainServiceImpl<User> implements UserServ
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * cc.macloud.core.account.service.UserService#getListSizeByRole(cc.macloud.core.common.dao.impl.CommonCriteria
 	 * , cc.macloud.core.account.entity.Role.Type, java.lang.String)
