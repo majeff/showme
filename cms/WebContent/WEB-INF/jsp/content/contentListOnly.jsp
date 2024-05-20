@@ -1,4 +1,4 @@
-<%@page import="com.showmoney.core.account.utils.AdminHelper"%><%@ 
+<%@page import="cc.macloud.core.account.utils.AdminHelper"%><%@ 
 	taglib uri='http://java.sun.com/jsp/jstl/core'
 	prefix="c"%><%@ 
 	taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %><%@ 

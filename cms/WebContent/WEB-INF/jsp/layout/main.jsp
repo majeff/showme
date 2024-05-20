@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%><%@
 	page
-	import="com.showmoney.core.account.utils.AdminHelper"%><%@ 
+	import="cc.macloud.core.account.utils.AdminHelper"%><%@ 
 	taglib uri="http://tiles.apache.org/tags-tiles"
 	prefix="tiles"%><%@ 
 	taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%><%@ 

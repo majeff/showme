@@ -8,51 +8,51 @@
     http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- account -->
-	<bean id="permissionDao" parent="daoTemplate" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
+	<bean id="permissionDao" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
 		<property name="className" value="cc.macloud.core.account.entity.Permission"/>
 	</bean>
 	<bean id="permissionService" class="cc.macloud.core.account.service.impl.PermissionServiceImpl">
 		<property name="dao" ref="permissionDao"/>
 	</bean>
-	<bean id="roleDao" parent="daoTemplate" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
+	<bean id="roleDao" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
 		<property name="className" value="cc.macloud.core.account.entity.Role"/>
 	</bean>
 	<bean id="roleService" class="cc.macloud.core.account.service.impl.RoleServiceImpl">
 		<property name="dao" ref="roleDao"/>
 	</bean>
-	<bean id="groupDao" parent="daoTemplate" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
+	<bean id="groupDao" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
 		<property name="className" value="cc.macloud.core.account.entity.Group"/>
 	</bean>
 	<bean id="groupService" class="cc.macloud.core.account.service.impl.GroupServiceImpl">
 		<property name="dao" ref="groupDao"/>
 	</bean>
-	<bean id="sidebarDao" parent="daoTemplate" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
+	<bean id="sidebarDao" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
 		<property name="className" value="cc.macloud.core.account.entity.Sidebar"/>
 	</bean>
 	<bean id="sidebarService" class="cc.macloud.core.account.service.impl.SidebarServiceImpl">
 		<property name="dao" ref="sidebarDao"/>
 	</bean>
 	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
-	<bean id="userDao" parent="daoTemplate" class="cc.macloud.core.account.dao.impl.UserDaoImpl"/>
+	<bean id="userDao" class="cc.macloud.core.account.dao.impl.UserDaoImpl"/>
 	<bean id="userService" class="cc.macloud.core.account.service.impl.UserServiceImpl">
 		<property name="dao" ref="userDao"/>
 	</bean>
 	<!-- batchjob
-	<bean id="batchJobDao" parent="daoTemplate" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
+	<bean id="batchJobDao" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
 		<property name="className" value="cc.macloud.core.batch.entity.BatchJob"/>
 	</bean>
 	<bean id="batchJobService" class="cc.macloud.core.batch.service.impl.BatchJobServiceImpl">
 		<property name="dao" ref="batchJobDao"/>
 	</bean>	-->
 	<!-- mail -->
-	<bean id="mailDao" parent="daoTemplate" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
+	<bean id="mailDao" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
 		<property name="className" value="cc.macloud.core.message.entity.Mail"/>
 	</bean>
 	<bean id="mailService" class="cc.macloud.core.message.service.impl.MailServiceImpl">
 		<property name="dao" ref="mailDao"/>
 	</bean>
 	<!-- common -->
-	<bean id="menuDao" parent="daoTemplate" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
+	<bean id="menuDao" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
 		<property name="className" value="cc.macloud.core.common.entity.Menu"/>
 	</bean>
 	<bean id="menuService" class="cc.macloud.core.common.service.impl.MenuServiceImpl">

@@ -8,29 +8,29 @@
     http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- content -->
-	<bean id="categoryDao" parent="daoTemplate" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
+	<bean id="categoryDao" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
 		<property name="className" value="cc.macloud.cms.content.entity.Category"/>
 	</bean>
 	<bean id="categoryService" class="cc.macloud.cms.content.service.impl.CategoryServiceImpl">
 		<property name="dao" ref="categoryDao"/>
 	</bean>
-	<bean id="contentTemplateDao" parent="daoTemplate" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
+	<bean id="contentTemplateDao" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
 		<property name="className" value="cc.macloud.cms.content.entity.ContentTemplate"/>
 	</bean>
 	<bean id="contentTemplateService" class="cc.macloud.cms.content.service.impl.ContentTemplateServiceImpl">
 		<property name="dao" ref="contentTemplateDao"/>
 	</bean>
-	<bean id="contentDao" parent="daoTemplate" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
+	<bean id="contentDao" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
 		<property name="className" value="cc.macloud.cms.content.entity.Content"/>
 	</bean>
 	<bean id="contentService" class="cc.macloud.cms.content.service.impl.ContentServiceImpl">
 		<property name="dao" ref="contentDao"/>
 	</bean>
 	<!-- workflow -->
-	<bean id="workflowDao" parent="daoTemplate" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
+	<bean id="workflowDao" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
 		<property name="className" value="cc.macloud.cms.workflow.entity.Workflow"/>
 	</bean>
-	<bean id="flowNodeDao" parent="daoTemplate" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
+	<bean id="flowNodeDao" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
 		<property name="className" value="cc.macloud.cms.workflow.entity.FlowNode"/>
 	</bean>
 	<bean id="workflowService" class="cc.macloud.cms.workflow.service.impl.WorkflowServiceImpl">

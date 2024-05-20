@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.slf4j.Logger;
@@ -38,6 +39,7 @@ public class JpaObjectDaoImpl<T> implements ObjectDao<T> {
     /**
      * The entity manager used for managing entities in the database.
      */
+    @PersistenceContext
     protected EntityManager em;
     /** logger */
     protected Logger logger = LoggerFactory.getLogger(getClass());
@@ -46,15 +48,6 @@ public class JpaObjectDaoImpl<T> implements ObjectDao<T> {
         super();
         this.className = className;
         this.classObj = Class.forName(className);
-    }
-
-    /**
-     * Sets the entity manager for this DAO.
-     *
-     * @param entityManager the entity manager to be set
-     */
-    public void setEntityManager(EntityManager entityManager) {
-        this.em = entityManager;
     }
 
     /**

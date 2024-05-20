@@ -1,84 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xsi:schemaLocation="
-	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd   
-	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
-	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
-	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
-	">
-	<context:property-placeholder location="conf/macloud.properties"/>
-	<context:annotation-config/>
+<beans xmlns="https://www.springframework.org/schema/beans"
+	xmlns:p="https://www.springframework.org/schema/p"
+	xmlns:context="https://www.springframework.org/schema/context"
+	xmlns:tx="https://www.springframework.org/schema/tx"
+	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="https://www.springframework.org/schema/beans
+		https://www.springframework.org/schema/beans/spring-beans.xsd
+		https://www.springframework.org/schema/context
+		https://www.springframework.org/schema/context/spring-context.xsd
+		https://www.springframework.org/schema/tx
+		https://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<context:property-placeholder location="conf/macloud.properties" />
+	<context:annotation-config />
 	<!-- Cache Start -->
 	<!-- Cache End -->
 	<!-- Data source Start -->
-	<!--
-		<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName"><value>${hibernate.driver}</value></property>
-		<property name="url"> <value>${ec.hibernate.jdbcurl}</value></property>
-		<property name="username"> <value>${ec.hibernate.username}</value></property>
-		<property name="password"> <value>${ec.hibernate.password}</value></property>
-		</bean>
-		<bean id="myDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName"> <value>${ec.hibernate.jndi}</value> </property>
-		</bean>
-	-->
-	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName">
-			<value>${hibernate.driver}</value>
-		</property>
-		<property name="url">
-			<value>${hibernate.jdbcurl}</value>
-		</property>
-		<property name="username">
-			<value>${hibernate.username}</value>
-		</property>
-		<property name="password">
-			<value>${hibernate.password}</value>
-		</property>
+	<bean id="myDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${datasource.driver}"/>
+		<property name="url" value="${datasource.jdbcurl}"/>
+		<property name="username" value="${datasource.username}"/>
+		<property name="password" value="${datasource.password}"/>
 	</bean>
-	<!-- <bean id="nativeJdbcExtractor" class="org.springframework.jdbc.support.nativejdbc.SimpleNativeJdbcExtractor"/> -->
-	<!-- <bean id="lobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler" lazy-init="false"/> -->
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-		<property name="dataSource" ref="myDataSource"/>
-		<!-- <property name="lobHandler" ref="lobHandler"/> -->
-		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
-				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl}</prop>
-				<prop key="hibernate.show_sql">${hibernate.showsql}</prop>
-				<prop key="hibernate.cache.use_second_level_cache">true</prop>
-				<!-- for 3.3 
-				<prop key="cache.provider_class">org.hibernate.cache.EhCacheProvider</prop> -->
-				<!-- for 4.x -->
-				<prop key="hibernate.cache.use_second_level_cache">false</prop>
-			    <prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
-			    <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
-			</props>
-		</property>
-		<property name="packagesToScan">
-			<list>
-				<value>cc.macloud.**.entity</value>
-			</list>
-		</property>
+	<bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+        <property name="database" value="${datasource.database}" />
+        <property name="databasePlatform" value="${datasource.database}" />
+        <property name="showSql" value="${datasource.showsql}" />
+        <property name="generateDdl" value="${datasource.hbm2ddl}" />
+    </bean>
+    <bean id="hibernateJpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" p:packagesToScan="cc.macloud.**.entity" p:dataSource-ref="myDataSource">
+		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter"/>
 	</bean>
-	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory"/>
-		</property>
-		<property name="nestedTransactionAllowed" value="true"/>
+
+	<!-- Transactions -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
-	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
-		<property name="sessionFactory" ref="sessionFactory"/>
-	</bean>
-	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-		<property name="dataSource" ref="myDataSource"/>
-	</bean>
-	<bean abstract="true" id="daoTemplate" class="cc.macloud.core.common.dao.impl.HibernateObjectDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory"/>
-	</bean>
-	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<!-- enable the configuration of transactional behavior based on annotations -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<!-- <bean id="nativeJdbcExtractor"
+	class="org.springframework.jdbc.support.nativejdbc.SimpleNativeJdbcExtractor"/> -->
+	<!-- <bean id="lobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler"
+	lazy-init="false"/> -->
+
 	<!-- Data source End -->
 	<!-- Service End -->
 	<!-- Remote Start -->
