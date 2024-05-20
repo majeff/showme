@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="https://www.springframework.org/schema/beans"
-	xmlns:p="https://www.springframework.org/schema/p"
 	xmlns:context="https://www.springframework.org/schema/context"
 	xmlns:tx="https://www.springframework.org/schema/tx"
 	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="https://www.springframework.org/schema/beans
-		https://www.springframework.org/schema/beans/spring-beans.xsd
+		https://www.springframework.org/schema/beans/spring-beans-4.3.xsd
 		https://www.springframework.org/schema/context
-		https://www.springframework.org/schema/context/spring-context.xsd
+		https://www.springframework.org/schema/context/spring-context-4.3.xsd
 		https://www.springframework.org/schema/tx
-		https://www.springframework.org/schema/tx/spring-tx.xsd">
+		https://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<context:property-placeholder location="/WEB-INF/conf/macloud.properties"/>
 	<context:annotation-config/>
@@ -32,8 +31,10 @@
     </bean>
     <bean id="hibernateJpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
 	<bean id="entityManagerFactory"
-		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" p:packagesToScan="cc.macloud.**.entity" p:dataSource-ref="myDataSource">
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter"/>
+		<property name="packagesToScan" value="cc.macloud.**.entity"/>
+		<property name="dataSource" ref="myDataSource"/>
 	</bean>
 
 	<!-- Transactions -->
