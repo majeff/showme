@@ -5,16 +5,15 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import cc.macloud.core.common.dao.ObjectDao;
 import cc.macloud.core.common.exception.CoreException;
 import cc.macloud.core.common.utils.dao.CommonCriteria;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Query;
 
 /**
  * This class is an implementation of the ObjectDao interface using JPA (Java
@@ -37,17 +36,24 @@ public class JpaObjectDaoImpl<T> implements ObjectDao<T> {
      */
     protected Class classObj;
     /**
+     * The entity manager factory used for creating entity managers.
+     */
+    protected EntityManagerFactory emf;
+    /**
      * The entity manager used for managing entities in the database.
      */
-    @PersistenceContext
     protected EntityManager em;
     /** logger */
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
     public JpaObjectDaoImpl(String className) throws ClassNotFoundException {
         super();
-        this.className = className;
         this.classObj = Class.forName(className);
+        this.className = className.substring(className.lastIndexOf(".") + 1);
+    }
+    public void setEntityManagerFactory(EntityManagerFactory emf) {
+        this.emf = emf;
+        this.em = emf.createEntityManager();
     }
 
     /**

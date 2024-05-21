@@ -1,59 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:context="http://www.springframework.org/schema/context"
-  xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans.xsd
-    http://www.springframework.org/schema/context
-    http://www.springframework.org/schema/context/spring-context.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx https://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<!-- account -->
 	<bean id="permissionDao" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
-		<property name="className" value="cc.macloud.core.account.entity.Permission"/>
+		<constructor-arg value="cc.macloud.core.account.entity.Permission"/>
+		<property name="entityManagerFactory" ref="entityManagerFactory"/>
 	</bean>
 	<bean id="permissionService" class="cc.macloud.core.account.service.impl.PermissionServiceImpl">
 		<property name="dao" ref="permissionDao"/>
 	</bean>
 	<bean id="roleDao" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
-		<property name="className" value="cc.macloud.core.account.entity.Role"/>
+		<constructor-arg value="cc.macloud.core.account.entity.Role"/>
+		<property name="entityManagerFactory" ref="entityManagerFactory"/>
 	</bean>
 	<bean id="roleService" class="cc.macloud.core.account.service.impl.RoleServiceImpl">
 		<property name="dao" ref="roleDao"/>
 	</bean>
 	<bean id="groupDao" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
-		<property name="className" value="cc.macloud.core.account.entity.Group"/>
+		<constructor-arg value="cc.macloud.core.account.entity.Group"/>
+		<property name="entityManagerFactory" ref="entityManagerFactory"/>
 	</bean>
 	<bean id="groupService" class="cc.macloud.core.account.service.impl.GroupServiceImpl">
 		<property name="dao" ref="groupDao"/>
 	</bean>
 	<bean id="sidebarDao" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
-		<property name="className" value="cc.macloud.core.account.entity.Sidebar"/>
+		<constructor-arg value="cc.macloud.core.account.entity.Sidebar"/>
+		<property name="entityManagerFactory" ref="entityManagerFactory"/>
 	</bean>
 	<bean id="sidebarService" class="cc.macloud.core.account.service.impl.SidebarServiceImpl">
 		<property name="dao" ref="sidebarDao"/>
 	</bean>
 	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
-	<bean id="userDao" class="cc.macloud.core.account.dao.impl.UserDaoImpl"/>
+	<bean id="userDao" class="cc.macloud.core.account.dao.impl.UserDaoImpl">
+		<property name="entityManagerFactory" ref="entityManagerFactory"/>
+	</bean>
 	<bean id="userService" class="cc.macloud.core.account.service.impl.UserServiceImpl">
 		<property name="dao" ref="userDao"/>
 	</bean>
 	<!-- batchjob
 	<bean id="batchJobDao" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
-		<property name="className" value="cc.macloud.core.batch.entity.BatchJob"/>
+		<constructor-arg value="cc.macloud.core.batch.entity.BatchJob"/>
 	</bean>
 	<bean id="batchJobService" class="cc.macloud.core.batch.service.impl.BatchJobServiceImpl">
 		<property name="dao" ref="batchJobDao"/>
 	</bean>	-->
 	<!-- mail -->
 	<bean id="mailDao" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
-		<property name="className" value="cc.macloud.core.message.entity.Mail"/>
+		<constructor-arg value="cc.macloud.core.message.entity.Mail"/>
+		<property name="entityManagerFactory" ref="entityManagerFactory"/>
 	</bean>
 	<bean id="mailService" class="cc.macloud.core.message.service.impl.MailServiceImpl">
 		<property name="dao" ref="mailDao"/>
 	</bean>
 	<!-- common -->
 	<bean id="menuDao" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
-		<property name="className" value="cc.macloud.core.common.entity.Menu"/>
+		<constructor-arg value="cc.macloud.core.common.entity.Menu"/>
+		<property name="entityManagerFactory" ref="entityManagerFactory"/>
 	</bean>
 	<bean id="menuService" class="cc.macloud.core.common.service.impl.MenuServiceImpl">
 		<property name="dao" ref="menuDao"/>

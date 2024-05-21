@@ -1,37 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:context="http://www.springframework.org/schema/context"
-  xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans.xsd
-    http://www.springframework.org/schema/context
-    http://www.springframework.org/schema/context/spring-context.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx https://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<!-- content -->
 	<bean id="categoryDao" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
-		<property name="className" value="cc.macloud.cms.content.entity.Category"/>
+		<constructor-arg value="cc.macloud.cms.content.entity.Category"/>
+		<property name="entityManagerFactory" ref="entityManagerFactory"/>
 	</bean>
 	<bean id="categoryService" class="cc.macloud.cms.content.service.impl.CategoryServiceImpl">
 		<property name="dao" ref="categoryDao"/>
 	</bean>
 	<bean id="contentTemplateDao" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
-		<property name="className" value="cc.macloud.cms.content.entity.ContentTemplate"/>
+		<constructor-arg value="cc.macloud.cms.content.entity.ContentTemplate"/>
+		<property name="entityManagerFactory" ref="entityManagerFactory"/>
 	</bean>
 	<bean id="contentTemplateService" class="cc.macloud.cms.content.service.impl.ContentTemplateServiceImpl">
 		<property name="dao" ref="contentTemplateDao"/>
 	</bean>
 	<bean id="contentDao" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
-		<property name="className" value="cc.macloud.cms.content.entity.Content"/>
+		<constructor-arg value="cc.macloud.cms.content.entity.Content"/>
+		<property name="entityManagerFactory" ref="entityManagerFactory"/>
 	</bean>
 	<bean id="contentService" class="cc.macloud.cms.content.service.impl.ContentServiceImpl">
 		<property name="dao" ref="contentDao"/>
 	</bean>
 	<!-- workflow -->
 	<bean id="workflowDao" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
-		<property name="className" value="cc.macloud.cms.workflow.entity.Workflow"/>
+		<constructor-arg value="cc.macloud.cms.workflow.entity.Workflow"/>
+		<property name="entityManagerFactory" ref="entityManagerFactory"/>
 	</bean>
 	<bean id="flowNodeDao" class="cc.macloud.core.common.dao.impl.JpaObjectDaoImpl">
-		<property name="className" value="cc.macloud.cms.workflow.entity.FlowNode"/>
+		<constructor-arg value="cc.macloud.cms.workflow.entity.FlowNode"/>
+		<property name="entityManagerFactory" ref="entityManagerFactory"/>
 	</bean>
 	<bean id="workflowService" class="cc.macloud.cms.workflow.service.impl.WorkflowServiceImpl">
 		<property name="dao" ref="workflowDao"/>

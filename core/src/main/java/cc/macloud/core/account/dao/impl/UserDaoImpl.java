@@ -16,8 +16,6 @@ package cc.macloud.core.account.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Query;
-
 import cc.macloud.core.account.dao.UserDao;
 import cc.macloud.core.account.entity.Permission;
 import cc.macloud.core.account.entity.Role;
@@ -25,6 +23,7 @@ import cc.macloud.core.account.entity.User;
 import cc.macloud.core.common.dao.impl.JpaObjectDaoImpl;
 import cc.macloud.core.common.exception.CoreException;
 import cc.macloud.core.common.utils.dao.CommonCriteria;
+import jakarta.persistence.Query;
 
 /**
  * @author jeff.ma

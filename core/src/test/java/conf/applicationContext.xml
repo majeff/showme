@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd
-		http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util-4.3.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/tx https://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-	<util:properties id="configuration" location="classpath:conf/macloud.properties"/>
+	<context:property-placeholder location="/conf/macloud.properties"/>
+	<context:annotation-config/>
 	<!-- Cache Start -->
 	<!-- Cache End -->
 	<!-- Data source Start -->
 	<bean id="myDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="${datasource.driver}"/>
-		<property name="url" value="${datasource.jdbcurl}"/>
-		<property name="username" value="${datasource.username}"/>
-		<property name="password" value="${datasource.password}"/>
+		<property name="driverClassName"><value>${datasource.driver}</value></property>
+		<property name="url"><value>${datasource.jdbcurl}</value></property>
+		<property name="username"><value>${datasource.username}</value></property>
+		<property name="password"><value>${datasource.password}</value></property>
 	</bean>
-	<bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-        <property name="database" value="${datasource.database}" />
-        <property name="databasePlatform" value="${datasource.database}" />
-        <property name="showSql" value="${datasource.showsql}" />
-        <property name="generateDdl" value="${datasource.hbm2ddl}" />
+	<bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<!-- <property name="database"><value>${datasource.database}</value></property>
+		<property name="databasePlatform"><value>${datasource.database}</value></property>
+		<property name="showsql"><value>${datasource.showsql}</value></property> -->
+		<property name="generateDdl"><value>${datasource.hbm2ddl}</value></property>
     </bean>
     <bean id="hibernateJpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
-	<bean id="entityManagerFactory"
-		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter"/>
-		<property name="packagesToScan" value="cc.macloud.**.entity"/>
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
 		<property name="dataSource" ref="myDataSource"/>
+		<property name="packagesToScan"><value>cc.macloud.**.entity</value></property>
 	</bean>
 
 	<!-- Transactions -->
