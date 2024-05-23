@@ -4,7 +4,7 @@
 
    Date Created      : 2009/10/20
    Original Author   : jeff.ma
-   Team              : 
+   Team              :
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    MODIFICATION HISTORY
    ------------------------------------------------------------------------------
@@ -21,14 +21,12 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 
@@ -46,8 +44,6 @@ public class Menu extends BaseEntity {
 	private static final long serialVersionUID = -9019681355004568482L;
 
 	@Id
-	@GeneratedValue(generator = "assigned")
-	@GenericGenerator(name = "assigned", strategy = "assigned")
 	@Column(name = "MENU_KEY", length = 30)
 	private String key;
 	@Column(name = "MENU_DESC", length = 60)
@@ -199,7 +195,7 @@ public class Menu extends BaseEntity {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -209,7 +205,7 @@ public class Menu extends BaseEntity {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#clone()
 	 */
 	@Override
