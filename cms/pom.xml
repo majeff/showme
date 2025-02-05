@@ -69,7 +69,7 @@
 		</snapshotRepository>
 	</distributionManagement>
 	<properties>
-		<spring-version>6.0.23</spring-version>
+		<spring-version>6.1.14</spring-version>
 		<spring-security-version>5.3.4.RELEASE</spring-security-version>
 		<hibernate-core-version>5.4.20.Final</hibernate-core-version>
 		<hibernate-annotations-version>5.1.0.Final</hibernate-annotations-version>
