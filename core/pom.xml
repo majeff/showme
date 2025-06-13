@@ -61,7 +61,7 @@
 		</snapshotRepository>
 	</distributionManagement>
 	<properties>
-		<spring-version>6.1.14</spring-version>
+		<spring-version>6.1.21</spring-version>
 		<spring-security-version>6.2.8</spring-security-version>
 		<hibernate-version>6.5.1.Final</hibernate-version>
 		<lucene-version>3.6.0</lucene-version>
