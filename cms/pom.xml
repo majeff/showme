@@ -69,12 +69,12 @@
 		</snapshotRepository>
 	</distributionManagement>
 	<properties>
-		<spring-version>6.0.14</spring-version>
-		<spring-security-version>5.3.4.RELEASE</spring-security-version>
+		<spring-version>5.3.39</spring-version>
+		<spring-security-version>5.8.16</spring-security-version>
 		<hibernate-core-version>5.4.20.Final</hibernate-core-version>
 		<hibernate-annotations-version>5.1.0.Final</hibernate-annotations-version>
 		<lucene-version>3.6.0</lucene-version>
-		<slf4j-version>1.5.11</slf4j-version><!-- 1.6.4 newer ;1.5.11 for spring -->
+		<slf4j-version>1.7.36</slf4j-version><!-- 1.6.4 newer ;1.5.11 for spring -->
 	</properties>
 	<dependencies>
 		<dependency>
@@ -110,7 +110,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.28</version>
+			<version>8.0.33</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet.jsp.jstl</groupId>
@@ -120,7 +120,7 @@
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
-			<version>1.2.2</version>
+			<version>1.4</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -135,17 +135,17 @@
 		<dependency>
 			<groupId>javassist</groupId>
 			<artifactId>javassist</artifactId>
-			<version>3.8.0.GA</version>
+			<version>3.12.1.GA</version>
 		</dependency>
 		<dependency><!-- BeanFactory not initialized or already closed - call 'refresh' before accessing beans via the ApplicationContext -->
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
-			<version>2.1</version>
+			<version>3.3.0</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.13.1</version>
+			<version>4.13.2</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -156,17 +156,17 @@
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-core</artifactId>
-			<version>2.2.2</version>
+			<version>3.0.8</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-jsp</artifactId>
-			<version>2.2.2</version>
+			<version>3.0.8</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-api</artifactId>
-			<version>2.2.2</version>
+			<version>3.0.8</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springmodules</groupId>
