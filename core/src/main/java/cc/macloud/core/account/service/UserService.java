@@ -2,10 +2,10 @@
  * ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  * Module Name : cc.macloud.core.account.service.UserService
  * Module Description :
- * 
+ *
  * Date Created : Apr 16, 2008
  * Original Author : jeffma
- * Team : 
+ * Team :
  * ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  * MODIFICATION HISTORY
  * ------------------------------------------------------------------------------
@@ -22,9 +22,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import cc.macloud.core.account.entity.Permission;
 import cc.macloud.core.account.entity.Role;
 import cc.macloud.core.account.entity.User;
-import cc.macloud.core.common.dao.impl.CommonCriteria;
 import cc.macloud.core.common.exception.CoreException;
 import cc.macloud.core.common.service.DomainService;
+import cc.macloud.core.common.utils.dao.CommonCriteria;
 
 /**
  * @author jeffma
@@ -33,7 +33,7 @@ public interface UserService extends DomainService<User>, UserDetailsService {
 
 	/**
 	 * 變更密碼
-	 * 
+	 *
 	 * @param user
 	 * @param newPassword
 	 * @param oldPassword
@@ -55,7 +55,7 @@ public interface UserService extends DomainService<User>, UserDetailsService {
 
 	/**
 	 * 驗證密碼
-	 * 
+	 *
 	 * @param user
 	 * @param password
 	 * @param targetIP

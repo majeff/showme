@@ -4,7 +4,7 @@
 
    Date Created      : 2012/5/23
    Original Author   : jeffma
-   Team              : 
+   Team              :
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    MODIFICATION HISTORY
    ------------------------------------------------------------------------------
@@ -30,14 +30,14 @@ import cc.macloud.cms.content.service.ContentTemplateService;
 import cc.macloud.cms.workflow.entity.FlowAction;
 import cc.macloud.cms.workflow.entity.FlowNode;
 import cc.macloud.cms.workflow.service.WorkflowService;
-import cc.macloud.core.common.dao.impl.CommonCriteria;
 import cc.macloud.core.common.exception.CoreException;
 import cc.macloud.core.common.service.impl.DomainServiceImpl;
 import cc.macloud.core.common.utils.DateUtils;
+import cc.macloud.core.common.utils.dao.CommonCriteria;
 
 /**
  * @author jeffma
- * 
+ *
  */
 public class ContentServiceImpl extends DomainServiceImpl<Content> implements ContentService {
 
@@ -47,7 +47,7 @@ public class ContentServiceImpl extends DomainServiceImpl<Content> implements Co
 	private ContentTemplateService contentTemplateService;
 
 	/**
-	 * 
+	 *
 	 */
 	public ContentServiceImpl() {
 		super();
@@ -56,7 +56,7 @@ public class ContentServiceImpl extends DomainServiceImpl<Content> implements Co
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.common.service.impl.DomainServiceImpl#save(java.lang.Object)
 	 */
 	@Override
@@ -88,7 +88,7 @@ public class ContentServiceImpl extends DomainServiceImpl<Content> implements Co
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.cms.content.service.ContentService#publish(cc.macloud.cms.content.entity.Content,
 	 * java.lang.String, java.lang.String)
 	 */
@@ -159,7 +159,7 @@ public class ContentServiceImpl extends DomainServiceImpl<Content> implements Co
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.common.service.impl.DomainServiceImpl#delete(java.lang.Object)
 	 */
 	@Override
@@ -187,7 +187,7 @@ public class ContentServiceImpl extends DomainServiceImpl<Content> implements Co
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.common.service.impl.DomainServiceImpl#get(java.io.Serializable)
 	 */
 	@Override
@@ -201,7 +201,7 @@ public class ContentServiceImpl extends DomainServiceImpl<Content> implements Co
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.common.service.impl.DomainServiceImpl#getList(int, int,
 	 * cc.macloud.core.common.dao.impl.CommonCriteria, java.lang.String[])
 	 */
@@ -217,7 +217,7 @@ public class ContentServiceImpl extends DomainServiceImpl<Content> implements Co
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * cc.macloud.core.common.service.impl.DomainServiceImpl#getListSize(cc.macloud.core.common.dao.impl.CommonCriteria
 	 * )
@@ -233,7 +233,7 @@ public class ContentServiceImpl extends DomainServiceImpl<Content> implements Co
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * cc.macloud.core.common.service.impl.DomainServiceImpl#getSingle(cc.macloud.core.common.dao.impl.CommonCriteria
 	 * , java.lang.String[])
@@ -249,7 +249,7 @@ public class ContentServiceImpl extends DomainServiceImpl<Content> implements Co
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.cms.content.service.ContentService#createContent(java.lang.String, java.lang.String)
 	 */
 	@Override
@@ -266,7 +266,7 @@ public class ContentServiceImpl extends DomainServiceImpl<Content> implements Co
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.cms.content.service.ContentService#getPublih(java.lang.String, int, int, java.lang.String[])
 	 */
 	public List<Content> getPublish(String templateCode, int firstResult, int maxResults, String[] sortOrder) {
@@ -281,7 +281,7 @@ public class ContentServiceImpl extends DomainServiceImpl<Content> implements Co
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.cms.content.service.ContentService#getPublihSize(java.lang.String)
 	 */
 	@Override

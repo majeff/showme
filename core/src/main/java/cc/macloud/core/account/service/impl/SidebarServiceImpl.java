@@ -4,7 +4,7 @@
 
    Date Created      : 2011/4/20
    Original Author   : jeffma
-   Team              : 
+   Team              :
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    MODIFICATION HISTORY
    ------------------------------------------------------------------------------
@@ -15,6 +15,7 @@ package cc.macloud.core.account.service.impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -29,16 +30,16 @@ import cc.macloud.core.account.entity.Sidebar;
 import cc.macloud.core.account.entity.User;
 import cc.macloud.core.account.service.SidebarService;
 import cc.macloud.core.account.utils.AdminHelper;
-import cc.macloud.core.common.dao.impl.CommonCriteria;
 import cc.macloud.core.common.exception.CoreException;
 import cc.macloud.core.common.service.TemplateService;
 import cc.macloud.core.common.service.impl.DomainServiceImpl;
 import cc.macloud.core.common.utils.DateUtils;
 import cc.macloud.core.common.utils.FileUtils;
+import cc.macloud.core.common.utils.dao.CommonCriteria;
 
 /**
  * @author jeffma
- * 
+ *
  */
 public class SidebarServiceImpl extends DomainServiceImpl<Sidebar> implements SidebarService, InitializingBean {
 
@@ -68,7 +69,7 @@ public class SidebarServiceImpl extends DomainServiceImpl<Sidebar> implements Si
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
 	 */
 	public void afterPropertiesSet() throws Exception {
@@ -84,7 +85,7 @@ public class SidebarServiceImpl extends DomainServiceImpl<Sidebar> implements Si
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.common.service.impl.DomainServiceImpl#save(java.lang.Object)
 	 */
 
@@ -98,7 +99,7 @@ public class SidebarServiceImpl extends DomainServiceImpl<Sidebar> implements Si
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.sidebar.service.SidebarService#buildSidebar(cc.macloud.core.account.entity.User)
 	 */
 
@@ -117,7 +118,7 @@ public class SidebarServiceImpl extends DomainServiceImpl<Sidebar> implements Si
 			objs.put("sidebars", sidebars);
 			userSidebar = templateService.format("account/User.sidebar", objs);
 			try {
-				FileUtils.writeStringToFile(userSidebarFile, userSidebar);
+				FileUtils.writeStringToFile(userSidebarFile, userSidebar, Charset.defaultCharset());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -129,7 +130,7 @@ public class SidebarServiceImpl extends DomainServiceImpl<Sidebar> implements Si
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.account.service.SidebarService#getTop()
 	 */
 
@@ -161,7 +162,7 @@ public class SidebarServiceImpl extends DomainServiceImpl<Sidebar> implements Si
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.account.service.SidebarService#checkLastModify()
 	 */
 
@@ -183,7 +184,7 @@ public class SidebarServiceImpl extends DomainServiceImpl<Sidebar> implements Si
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.account.service.SidebarService#getSidebar(cc.macloud.core.account.entity.User)
 	 */
 	@Override
@@ -208,7 +209,7 @@ public class SidebarServiceImpl extends DomainServiceImpl<Sidebar> implements Si
 			result = buildSidebar(user);
 		} else {
 			try {
-				FileUtils.readFileToString(userSidebarFile);
+				FileUtils.readFileToString(userSidebarFile, Charset.defaultCharset());
 			} catch (IOException e) {
 				logger.error("errors.common.sidebar.io", e);
 			}

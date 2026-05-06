@@ -4,7 +4,7 @@
 
    Date Created      : 2008/12/19
    Original Author   : jeffma
-   Team              : 
+   Team              :
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    MODIFICATION HISTORY
    ------------------------------------------------------------------------------
@@ -24,9 +24,9 @@ import org.springframework.transaction.annotation.Transactional;
 import cc.macloud.core.cache.exception.CacheException;
 import cc.macloud.core.cache.service.CacheService;
 import cc.macloud.core.common.dao.ObjectDao;
-import cc.macloud.core.common.dao.impl.CommonCriteria;
 import cc.macloud.core.common.exception.CoreException;
 import cc.macloud.core.common.service.DomainService;
+import cc.macloud.core.common.utils.dao.CommonCriteria;
 import cc.macloud.core.logger.service.AnnotationLogger;
 
 /**
@@ -103,7 +103,7 @@ public class DomainServiceImpl<T> implements DomainService<T> {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.common.service.DomainService#delete(java.lang.Object)
 	 */
 
@@ -122,7 +122,7 @@ public class DomainServiceImpl<T> implements DomainService<T> {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.common.service.DomainService#get(java.io.Serializable)
 	 */
 
@@ -149,7 +149,7 @@ public class DomainServiceImpl<T> implements DomainService<T> {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.common.service.DomainService#getAll(int, int)
 	 */
 
@@ -162,7 +162,7 @@ public class DomainServiceImpl<T> implements DomainService<T> {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.common.service.DomainService#save(java.lang.Object)
 	 */
 
@@ -180,7 +180,7 @@ public class DomainServiceImpl<T> implements DomainService<T> {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.common.service.DomainService#getAllSize()
 	 */
 
@@ -190,7 +190,7 @@ public class DomainServiceImpl<T> implements DomainService<T> {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.common.service.DomainService#getList(int, int,
 	 * cc.macloud.core.common.dao.impl.CommonCriteria)
 	 */
@@ -205,7 +205,7 @@ public class DomainServiceImpl<T> implements DomainService<T> {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.common.service.DomainService#getListSize(com.yaodian .core.common.dao.impl.CommonCriteria)
 	 */
 
@@ -215,7 +215,7 @@ public class DomainServiceImpl<T> implements DomainService<T> {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.common.service.DomainService#getSingle(cc.macloud.core.common.dao.impl.CommonCriteria,
 	 * java.lang.String[])
 	 */

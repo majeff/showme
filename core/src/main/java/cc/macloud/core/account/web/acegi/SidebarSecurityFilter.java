@@ -42,7 +42,7 @@ import cc.macloud.core.common.utils.StringUtils;
  * @author jeffma
  *
  */
-public class SidebarSecurityFilter extends GenericFilterBean implements InitializingBean {
+public class SidebarSecurityFilter extends GenericFilterBean {
 
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -80,7 +80,6 @@ public class SidebarSecurityFilter extends GenericFilterBean implements Initiali
 	 * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest, javax.servlet.ServletResponse,
 	 * javax.servlet.FilterChain)
 	 */
-	@Override
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException,
 			ServletException {
 		try {
@@ -116,4 +115,5 @@ public class SidebarSecurityFilter extends GenericFilterBean implements Initiali
 		}
 		chain.doFilter(req, res);
 	}
+
 }

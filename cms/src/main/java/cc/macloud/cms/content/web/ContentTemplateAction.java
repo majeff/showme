@@ -4,7 +4,7 @@
 
    Date Created      : 2012/5/31
    Original Author   : jeffma
-   Team              : 
+   Team              :
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    MODIFICATION HISTORY
    ------------------------------------------------------------------------------
@@ -34,15 +34,15 @@ import cc.macloud.cms.content.entity.ContentTemplate;
 import cc.macloud.cms.content.entity.ContentTemplateElement;
 import cc.macloud.cms.content.service.ContentTemplateService;
 import cc.macloud.cms.workflow.service.WorkflowService;
-import cc.macloud.core.common.dao.impl.CommonCriteria;
 import cc.macloud.core.common.entity.SimplePager;
 import cc.macloud.core.common.utils.DateUtils;
 import cc.macloud.core.common.utils.StringUtils;
+import cc.macloud.core.common.utils.dao.CommonCriteria;
 import cc.macloud.core.common.web.AbstractAction;
 
 /**
  * @author jeffma
- * 
+ *
  */
 @Controller
 @RequestMapping(value = "/content/template")

@@ -4,7 +4,7 @@
 
    Date Created      : 2011/4/20
    Original Author   : jeffma
-   Team              : 
+   Team              :
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    MODIFICATION HISTORY
    ------------------------------------------------------------------------------
@@ -23,7 +23,6 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -31,7 +30,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
@@ -40,9 +38,9 @@ import cc.macloud.core.common.utils.StringUtils;
 
 /**
  * @author jeffma
- * 
+ *
  */
-@Entity
+@Entity(name = "Sidebar")
 @Table(name = "CORE_ACC_SIDEBAR")
 public class Sidebar extends BaseEntity {
 
@@ -50,8 +48,6 @@ public class Sidebar extends BaseEntity {
 	private static final long serialVersionUID = 4196636549168317209L;
 	/** code */
 	@Id
-	@GeneratedValue(generator = "assigned")
-	@GenericGenerator(name = "assigned", strategy = "assigned")
 	@Column(name = "SIDEBAR_CODE", length = 30)
 	private String code;
 	@Column(name = "SIDEBAR_NAME", length = 30)
@@ -271,7 +267,7 @@ public class Sidebar extends BaseEntity {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

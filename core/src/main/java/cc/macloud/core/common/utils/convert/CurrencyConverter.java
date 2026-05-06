@@ -13,7 +13,7 @@ import cc.macloud.core.common.utils.StringUtils;
 /**
  * This class is converts a Double to a double-digit String (and vise-versa) by BeanUtils when copying properties.
  * Registered for use in BaseAction.
- * 
+ *
  * @author Matt Raible
  */
 @SuppressWarnings("rawtypes")
@@ -23,7 +23,7 @@ public class CurrencyConverter implements Converter {
 
 	/**
 	 * Convert a String to a Double and a Double to a String
-	 * 
+	 *
 	 * @param type
 	 *           the class type to output
 	 * @param value
@@ -52,7 +52,7 @@ public class CurrencyConverter implements Converter {
 					// formatter.setDecimalSeparatorAlwaysShown(true);
 					Number num = formatter.parse(String.valueOf(value));
 
-					return new Double(num.doubleValue());
+					return Double.valueOf(num.doubleValue());
 				} catch (ParseException pe) {
 					pe.printStackTrace();
 				}

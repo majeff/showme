@@ -4,7 +4,7 @@
 
    Date Created      : 2008/4/23
    Original Author   : jeffma
-   Team              : 
+   Team              :
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    MODIFICATION HISTORY
    ------------------------------------------------------------------------------
@@ -22,8 +22,10 @@ import java.util.Iterator;
 import java.util.Map;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,7 +36,7 @@ import cc.macloud.core.message.entity.Mail;
 
 /**
  * @author jeffma
- * 
+ *
  */
 public class UrlTemplateServiceImpl implements TemplateService, Serializable {
 
@@ -84,7 +86,7 @@ public class UrlTemplateServiceImpl implements TemplateService, Serializable {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.template.service.TemplateService#format(java.lang.String, java.util.Map)
 	 */
 
@@ -114,9 +116,11 @@ public class UrlTemplateServiceImpl implements TemplateService, Serializable {
 				req.addHeader("Content-Type", "text/html; charset=" + encoding);
 			}
 
-			DefaultHttpClient client = new DefaultHttpClient();
+			CloseableHttpClient client = HttpClientBuilder.create().build();
 			if (timeout > 0) {
-				client.getParams().setIntParameter("http.socket.timeout", timeout);
+				RequestConfig config = RequestConfig.custom().setConnectTimeout(timeout).setConnectionRequestTimeout(timeout)
+						.setSocketTimeout(timeout).build();
+				req.setConfig(config);
 			}
 
 			// if (StringUtils.isNotEmpty(proxyHost)) {
@@ -151,7 +155,7 @@ public class UrlTemplateServiceImpl implements TemplateService, Serializable {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.template.service.TemplateService#formatByString(java.lang.String, java.lang.String[],
 	 * java.lang.Object[])
 	 */
@@ -162,7 +166,7 @@ public class UrlTemplateServiceImpl implements TemplateService, Serializable {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see cc.macloud.core.template.service.TemplateService#formatByStringTemplate(java.lang.String, java.util.Map)
 	 */
 

@@ -4,7 +4,7 @@
 
    Date Created      : 2012/5/25
    Original Author   : jeffma
-   Team              : 
+   Team              :
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    MODIFICATION HISTORY
    ------------------------------------------------------------------------------
@@ -34,7 +34,7 @@ import cc.macloud.core.common.utils.SpringCommonTest;
 
 /**
  * @author jeffma
- * 
+ *
  */
 public class CmsServiceTest extends SpringCommonTest {
 
@@ -42,7 +42,7 @@ public class CmsServiceTest extends SpringCommonTest {
 	 * @throws java.lang.Exception
 	 */
 	@BeforeClass
-	public void setUpBeforeClass() throws Exception {
+	static public void setUpBeforeClass() throws Exception {
 		configCtx();
 	}
 
