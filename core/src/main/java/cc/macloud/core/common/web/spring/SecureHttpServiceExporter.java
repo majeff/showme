@@ -4,7 +4,7 @@
 
    Date Created      : 2008/4/23
    Original Author   : jeffma
-   Team              : 
+   Team              :
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    MODIFICATION HISTORY
    ------------------------------------------------------------------------------
@@ -30,7 +30,7 @@ import cc.macloud.core.cache.service.CacheService;
 
 /**
  * @author jeffma
- * 
+ *
  */
 public class SecureHttpServiceExporter implements HttpRequestHandler {
 
@@ -68,7 +68,7 @@ public class SecureHttpServiceExporter implements HttpRequestHandler {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * Spring 6 removed HttpInvokerServiceExporter. Keep the IP allowlist check and return an explicit
 	 * error for legacy invoker calls that must be migrated.
 	 */

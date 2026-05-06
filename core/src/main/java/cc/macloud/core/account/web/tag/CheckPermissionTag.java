@@ -4,7 +4,7 @@
 
    Date Created      : 2009/12/10
    Original Author   : jeff.ma
-   Team              : 
+   Team              :
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    MODIFICATION HISTORY
    ------------------------------------------------------------------------------
@@ -21,7 +21,7 @@ import cc.macloud.core.common.utils.StringUtils;
 
 /**
  * @author jeff.ma
- * 
+ *
  */
 public class CheckPermissionTag extends ConditionalTagSupport {
 
@@ -44,7 +44,7 @@ public class CheckPermissionTag extends ConditionalTagSupport {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see javax.servlet.jsp.jstl.core.ConditionalTagSupport#condition()
 	 */
 	@Override

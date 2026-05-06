@@ -4,7 +4,7 @@
 
    Date Created      : 2012/5/30
    Original Author   : jeffma
-   Team              : 
+   Team              :
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    MODIFICATION HISTORY
    ------------------------------------------------------------------------------
@@ -35,7 +35,7 @@ import cc.macloud.core.common.utils.editor.DateEditor;
 
 /**
  * @author jeffma
- * 
+ *
  */
 public abstract class AbstractAction {
 

@@ -4,7 +4,7 @@
 
    Date Created      : 2011/4/21
    Original Author   : jeffma
-   Team              : 
+   Team              :
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    MODIFICATION HISTORY
    ------------------------------------------------------------------------------
@@ -40,7 +40,7 @@ import cc.macloud.core.common.utils.StringUtils;
 
 /**
  * @author jeffma
- * 
+ *
  */
 public class SidebarSecurityFilter extends GenericFilterBean implements InitializingBean {
 
@@ -76,7 +76,7 @@ public class SidebarSecurityFilter extends GenericFilterBean implements Initiali
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest, javax.servlet.ServletResponse,
 	 * javax.servlet.FilterChain)
 	 */

@@ -4,7 +4,7 @@
 
    Date Created      : 2008/3/14
    Original Author   : jeffma
-   Team              : 
+   Team              :
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    MODIFICATION HISTORY
    ------------------------------------------------------------------------------
@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * @author jeffma
- * 
+ *
  */
 public final class MailUtils {
 
