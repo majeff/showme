@@ -59,12 +59,12 @@
 		</snapshotRepository>
 	</distributionManagement>
 	<properties>
-		<spring-version>5.3.39</spring-version>
-		<spring-security-version>5.8.16</spring-security-version>
+		<spring-version>6.2.12</spring-version>
+		<spring-security-version>6.5.6</spring-security-version>
 		<hibernate-core-version>5.6.15.Final</hibernate-core-version>
 		<hibernate-annotations-version>5.1.0.Final</hibernate-annotations-version>
 		<lucene-version>3.6.0</lucene-version>
-		<slf4j-version>1.7.36</slf4j-version> <!-- 1.6.4 newer ;1.5.11 for spring -->
+		<slf4j-version>2.0.17</slf4j-version> <!-- 1.6.4 newer ;1.5.11 for spring -->
 	</properties>
 	<dependencies>
 		<dependency>
@@ -155,7 +155,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
+			<artifactId>slf4j-reload4j</artifactId>
 			<version>${slf4j-version}</version>
 		</dependency>
 		<dependency>
@@ -201,9 +201,9 @@
 			<version>1.3.6</version>
 		</dependency>
 		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>1.4.7</version>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>jakarta.mail</artifactId>
+			<version>2.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.ant</groupId>
@@ -211,21 +211,21 @@
 			<version>1.10.17</version>
 		</dependency>
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>4.0.1</version>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<version>6.0.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>javax.servlet.jsp-api</artifactId>
-			<version>2.3.3</version>
+			<groupId>jakarta.servlet.jsp</groupId>
+			<artifactId>jakarta.servlet.jsp-api</artifactId>
+			<version>3.1.1</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>javax.servlet.jsp.jstl</groupId>
-			<artifactId>javax.servlet.jsp.jstl-api</artifactId>
-			<version>1.2.2</version>
+			<groupId>jakarta.servlet.jsp.jstl</groupId>
+			<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+			<version>3.0.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -241,8 +241,8 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
 			<version>8.0.33</version>
 			<scope>test</scope>
 		</dependency>

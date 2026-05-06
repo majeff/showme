@@ -17,13 +17,13 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter;
+import org.springframework.web.HttpRequestHandler;
 
 import cc.macloud.core.cache.exception.CacheException;
 import cc.macloud.core.cache.service.CacheService;
@@ -32,7 +32,7 @@ import cc.macloud.core.cache.service.CacheService;
  * @author jeffma
  * 
  */
-public class SecureHttpServiceExporter extends HttpInvokerServiceExporter {
+public class SecureHttpServiceExporter implements HttpRequestHandler {
 
 	public final static String HEADER_ACTOR_KEY = "ACEGI_ACTORID";
 	private final Logger logger = LoggerFactory.getLogger(SecureHttpServiceExporter.class);
@@ -64,14 +64,13 @@ public class SecureHttpServiceExporter extends HttpInvokerServiceExporter {
 
 	/** default constructors */
 	public SecureHttpServiceExporter() {
-		super();
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @seeorg.springframework.remoting.httpinvoker.HttpInvokerServiceExporter#handleRequest(javax.servlet.http.
-	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 * Spring 6 removed HttpInvokerServiceExporter. Keep the IP allowlist check and return an explicit
+	 * error for legacy invoker calls that must be migrated.
 	 */
 	@Override
 	public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException,
@@ -98,7 +97,8 @@ public class SecureHttpServiceExporter extends HttpInvokerServiceExporter {
 		logger.debug("request contentPath:{}", request.getContextPath());
 
 		if (allow) {
-			super.handleRequest(request, response);
+			response.sendRedirect(request.getContextPath() + "/api/remote-cache/clean");
+			return;
 		}
 		throw new IOException("not allow IP (" + callerIP + ")");
 	}
