@@ -4,7 +4,7 @@
 
    Date Created      : 2012/5/17
    Original Author   : jeffma
-   Team              : 
+   Team              :
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    MODIFICATION HISTORY
    ------------------------------------------------------------------------------
@@ -33,7 +33,7 @@ import cc.macloud.core.common.entity.BaseEntity;
 
 /**
  * 網站 sitemap 定義
- * 
+ *
  * @author jeffma
  */
 @Entity
