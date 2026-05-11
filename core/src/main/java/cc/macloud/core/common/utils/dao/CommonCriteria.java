@@ -61,12 +61,12 @@ public class CommonCriteria implements Serializable {
 		this.in = in;
 	}
 
-	public final String buildHql(String className, String[] sortOrder, List values)
+	public final String buildHql(String className, String[] sortOrder, List<Object> values)
 			throws CoreException {
 		StringBuffer hql = new StringBuffer();
 
 		if ((getEq() != null) && (getEq().size() > 0)) {
-			Iterator it = getEq().keySet().iterator();
+			Iterator<String> it = getEq().keySet().iterator();
 			while (it.hasNext()) {
 				String key = (String) it.next();
 				Object value = getEq().get(key);
@@ -82,9 +82,9 @@ public class CommonCriteria implements Serializable {
 			}
 		}
 		if ((getNe() != null) && (getNe().size() > 0)) {
-			Iterator it = getNe().keySet().iterator();
+			Iterator<String> it = getNe().keySet().iterator();
 			while (it.hasNext()) {
-				String key = (String) it.next();
+				String key = it.next();
 				Object value = getNe().get(key);
 				if (hql.length() > 0) {
 					hql.append(" and");
@@ -98,9 +98,9 @@ public class CommonCriteria implements Serializable {
 			}
 		}
 		if ((getGe() != null) && (getGe().size() > 0)) {
-			Iterator it = getGe().keySet().iterator();
+			Iterator<String> it = getGe().keySet().iterator();
 			while (it.hasNext()) {
-				String key = (String) it.next();
+				String key = it.next();
 				Object value = getGe().get(key);
 				if (value != null) {
 					if (hql.length() > 0) {
@@ -112,9 +112,9 @@ public class CommonCriteria implements Serializable {
 			}
 		}
 		if ((getLe() != null) && (getLe().size() > 0)) {
-			Iterator it = getLe().keySet().iterator();
+			Iterator<String> it = getLe().keySet().iterator();
 			while (it.hasNext()) {
-				String key = (String) it.next();
+				String key = it.next();
 				Object value = getLe().get(key);
 				if (value != null) {
 					if (hql.length() > 0) {
@@ -126,9 +126,9 @@ public class CommonCriteria implements Serializable {
 			}
 		}
 		if ((getRlike() != null) && (getRlike().size() > 0)) {
-			Iterator it = getRlike().keySet().iterator();
+			Iterator<String> it = getRlike().keySet().iterator();
 			while (it.hasNext()) {
-				String key = (String) it.next();
+				String key = it.next();
 				Object value = getRlike().get(key);
 				if (value != null) {
 					if (hql.length() > 0) {
@@ -143,10 +143,10 @@ public class CommonCriteria implements Serializable {
 			CriteriaInRlike criInlike = (CriteriaInRlike) this;
 			if ((criInlike.getInRlike() != null) && (criInlike.getInRlike().size() > 0)) {
 				StringBuffer subHql = new StringBuffer();
-				Iterator it = criInlike.getInRlike().keySet().iterator();
+				Iterator<String> it = criInlike.getInRlike().keySet().iterator();
 				while (it.hasNext()) {
-					String key = (String) it.next();
-					Collection value = criInlike.getInRlike().get(key);
+					String key = it.next();
+					Collection<Serializable> value = criInlike.getInRlike().get(key);
 					for (Object o : value) {
 						if (subHql.length() > 0) {
 							subHql.append(" or");
@@ -164,10 +164,10 @@ public class CommonCriteria implements Serializable {
 			}
 		}
 		if ((getIn() != null) && (getIn().size() > 0)) {
-			Iterator it = getIn().keySet().iterator();
+			Iterator<String> it = getIn().keySet().iterator();
 			while (it.hasNext()) {
-				String key = (String) it.next();
-				Collection value = getIn().get(key);
+				String key = it.next();
+				Collection<Serializable> value = getIn().get(key);
 				if (value != null) {
 					if (hql.length() > 0) {
 						hql.append(" and");

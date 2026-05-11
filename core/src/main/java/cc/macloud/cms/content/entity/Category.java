@@ -13,6 +13,8 @@
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 package cc.macloud.cms.content.entity;
 
+import java.util.UUID;
+
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -44,10 +46,10 @@ public class Category extends BaseEntity {
 
 	/** uuid, PK, 自動產生 */
 	@Id
-	@GeneratedValue(generator = "gen_uuid")
-	@GenericGenerator(name = "gen_uuid", strategy = "uuid")
-	@Column(name = "OBJ_UUID", length = 32)
-	public String uuid;
+	@GeneratedValue(generator = "gen_uuid2")
+	@GenericGenerator(name = "gen_uuid2", strategy = "uuid2")
+	@Column(name = "OBJ_UUID", length = 36)
+	public UUID uuid;
 
 	/** name, 目錄簡短名稱 */
 	@Column(name = "CATEGORY_NAME", length = 10)
@@ -71,7 +73,7 @@ public class Category extends BaseEntity {
 	/**
 	 * @return the uuid
 	 */
-	public String getUuid() {
+	public UUID getUuid() {
 		return uuid;
 	}
 
@@ -79,7 +81,7 @@ public class Category extends BaseEntity {
 	 * @param uuid
 	 *           the uuid to set
 	 */
-	public void setUuid(String uuid) {
+	public void setUuid(UUID uuid) {
 		this.uuid = uuid;
 	}
 
